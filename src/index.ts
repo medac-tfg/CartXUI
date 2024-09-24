@@ -6,9 +6,9 @@ declare const STARTUI_WEBPACK_ENTRY: string;
 declare const STARTUI_PRELOAD_WEBPACK_ENTRY: string;
 
 const windowConfig = {
-  resizable: false,
-  frame: false,
-  fullscreen: true,
+  //resizable: false,
+  //frame: false,
+  //fullscreen: true,
 };
 
 const createWindows = (): void => {
