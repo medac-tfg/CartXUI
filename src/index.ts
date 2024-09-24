@@ -5,30 +5,38 @@ declare const OVERVIEWUI_PRELOAD_WEBPACK_ENTRY: string;
 declare const STARTUI_WEBPACK_ENTRY: string;
 declare const STARTUI_PRELOAD_WEBPACK_ENTRY: string;
 
+const windowConfig = {
+  resizable: false,
+  frame: false,
+  fullscreen: true,
+};
+
 const createWindows = (): void => {
-  const mainWindow = new BrowserWindow({
+  const overviewWindow = new BrowserWindow({
     height: 600,
     width: 800,
     webPreferences: {
       preload: OVERVIEWUI_PRELOAD_WEBPACK_ENTRY,
     },
+    ...windowConfig,
   });
 
-  mainWindow.loadURL(OVERVIEWUI_WEBPACK_ENTRY);
+  overviewWindow.loadURL(OVERVIEWUI_WEBPACK_ENTRY);
 
-  mainWindow.webContents.openDevTools();
+  overviewWindow.webContents.openDevTools();
 
-  const secondWindow = new BrowserWindow({
+  const startWindow = new BrowserWindow({
     height: 600,
     width: 800,
     webPreferences: {
       preload: STARTUI_PRELOAD_WEBPACK_ENTRY,
     },
+    ...windowConfig,
   });
 
-  secondWindow.loadURL(STARTUI_WEBPACK_ENTRY);
+  startWindow.loadURL(STARTUI_WEBPACK_ENTRY);
 
-  secondWindow.webContents.openDevTools();
+  startWindow.webContents.openDevTools();
 };
 
 app.on("ready", createWindows);
