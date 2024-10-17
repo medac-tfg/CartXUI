@@ -1,0 +1,147 @@
+.products {
+  display: flex;
+  flex-direction: row;
+  gap: 3.5px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  padding: 5px;
+  border-radius: 10px;
+  background-color: #fff;
+}
+
+.product__image__container {
+  width: 114px;
+  height: 80px;
+  border-radius: 10px;
+  background-color: #f1f4f6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product__image {
+  height: 100%;
+  width: auto;
+  border-radius: 5px;
+}
+
+.product__name {
+  font-family: "Montserrat-SemiBold";
+  font-size: 11px;
+  margin-top: 5px;
+}
+
+.product__info__container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 5px;
+}
+
+.product__info__category {
+  background-color: red;
+  border-radius: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.product__info__category__text {
+  font-family: "Montserrat-SemiBold";
+  font-size: 9px;
+  color: #c6cacd;
+}
+
+.product__info__price {
+  font-family: "Montserrat-SemiBold";
+  font-size: 12px;
+}
+
+.product-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  flex-wrap: wrap;
+  margin-top: 10px;
+}
+
+.product-list__title {
+  font-family: "Montserrat-SemiBold";
+  font-size: 14px;
+  margin-bottom: 5px;
+}
+
+.inlineproduct {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.inlineproduct__left {
+  display: flex;
+  flex-direction: row;
+}
+
+.inlineproduct__image__container {
+  width: 45px;
+  height: 45px;
+  border-radius: 5px;
+  background-color: #f1f4f6;
+  margin-right: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.inlineproduct__image {
+  height: 100%;
+  width: auto;
+  border-radius: 5px;
+}
+
+.inlineproduct__info__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.inlineproduct__name {
+  font-family: "Montserrat-SemiBold";
+  font-size: 12px;
+}
+
+.inlineproduct__quantity {
+  font-family: "Montserrat-SemiBold";
+  font-size: 11px;
+  color: #000;
+}
+
+.inlineproduct__brand {
+  font-family: "Montserrat-Medium";
+  font-size: 11px;
+  color: #c6cacd;
+}
+
+.inlineproduct__price {
+  font-family: "Montserrat-SemiBold";
+  font-size: 12px;
+}
+
+.inlineproduct__right {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}

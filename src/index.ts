@@ -6,14 +6,14 @@ declare const STARTUI_WEBPACK_ENTRY: string;
 declare const STARTUI_PRELOAD_WEBPACK_ENTRY: string;
 
 const windowConfig = {
-  //resizable: false,
-  //frame: false,
+  resizable: false,
+  frame: false,
   //fullscreen: true,
 };
 
 const createWindows = (): void => {
   const overviewWindow = new BrowserWindow({
-    height: 600,
+    height: 480,
     width: 800,
     webPreferences: {
       preload: OVERVIEWUI_PRELOAD_WEBPACK_ENTRY,
@@ -26,7 +26,7 @@ const createWindows = (): void => {
   overviewWindow.webContents.openDevTools();
 
   const startWindow = new BrowserWindow({
-    height: 600,
+    height: 480,
     width: 800,
     webPreferences: {
       preload: STARTUI_PRELOAD_WEBPACK_ENTRY,

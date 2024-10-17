@@ -10,7 +10,7 @@ const App = () => {
       </Routes>
     </Router>
   );
-}
+};
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);
