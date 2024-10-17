@@ -1,6 +1,6 @@
 import { CategoryProps } from "./@types/category";
 
-const Category = ({ name, Icon, itemCount, active }: CategoryProps) => {
+const Category = ({ index, name, Icon, itemCount, active, setActiveCategory }: CategoryProps) => {
   const containerClassName = active
     ? "category__container category__container__active"
     : "category__container";
@@ -9,7 +9,7 @@ const Category = ({ name, Icon, itemCount, active }: CategoryProps) => {
     : "category__icon";
 
   return (
-    <div className={containerClassName}>
+    <div className={containerClassName} onClick={() => setActiveCategory(index)}>
       <div className={iconClassName}>
         <Icon size={14} color={active ? "#fff" : "#000"} />
       </div>
