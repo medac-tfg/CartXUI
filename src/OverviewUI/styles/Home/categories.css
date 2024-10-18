@@ -1,8 +1,8 @@
 .categories {
   display: flex;
   flex-direction: row;
-  margin-top: 10px;
   gap: 8px;
+  margin-bottom: 10px;
 }
 
 .category__container {
@@ -12,6 +12,7 @@
   padding: 7px;
   min-width: 80px;
   border-radius: 10px;
+  border: 1.5px solid transparent;
 }
 
 .category__container__active {

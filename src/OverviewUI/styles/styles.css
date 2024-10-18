@@ -35,5 +35,5 @@ body {
 
 #root {
   user-select: none !important;
-  /* -webkit-app-region: drag; */ /* Remove on production */
+  /*-webkit-app-region: drag; */ /* Remove on production */
 }

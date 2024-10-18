@@ -1,3 +1,4 @@
+// eslint-disable-next-line import/no-unresolved
 import { CategoryProps } from "./@types/category";
 
 const Category = ({ index, name, Icon, itemCount, active, setActiveCategory }: CategoryProps) => {

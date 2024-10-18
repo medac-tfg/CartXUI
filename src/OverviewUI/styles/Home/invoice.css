@@ -8,151 +8,199 @@
 .invoice__main {
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 30px);
   padding: 15px;
 }
 
-.invoice__title {
-  font-family: "Montserrat-SemiBold";
-  font-size: 14px;
-  margin-bottom: 15px;
-  margin-top: 10px;
-}
-
-.invoice__info__container {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  box-shadow: 0 -8px 25px rgba(0, 0, 0, 0.5);
-  background-color: #fff;
-}
-
-.invoice__info__overlay {
-  position: absolute;
-  margin-top: -10px;
-  width: 100%;
-  height: 40px;
-  background: #fff;
-  clip-path: path(
-    "M0,2 Q5,-2 10,2 T20,2 T30,2 T40,2 T50,2 T60,2 T70,2 T80,2 T90,2 T100,2 V10 H0 Z"
-  );
-}
-
-.invoice__info {
+.invoice__additional-items {
   display: flex;
   flex-direction: column;
-  margin-top: 10px;
 }
 
-.invoice__info__item {
+.invoice__additional-items__item {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  padding-left: 7.5px;
-  padding-right: 7.5px;
-}
-
-.invoice__info__item__text {
-  font-family: "Montserrat-SemiBold";
-  font-size: 11px;
-}
-
-.invoice__info__item__right {
-  display: flex;
-  width: 50%;
-  justify-content: flex-end;
-}
-
-.invoice__info__item__currency {
-  position: absolute;
-  margin-right: 55px;
-}
-
-.invoice__info__separator {
-  border-bottom: 1px dashed #ccc;
-  margin-top: 5px;
   margin-bottom: 5px;
-  width: 95%;
-  align-self: center;
+  border: 1.6px solid #f5f5f5;
+  border-radius: 10px;
+  padding: 2.5px;
 }
 
-.invoice__info__total {
+.invoice__additional-items__item__img {
+  width: 42.5px;
+  height: 42.5px;
+  min-width: 42.5px;
+  min-height: 42.5px;
+  margin-right: 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.invoice__additional-items__item__info {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  margin-top: 10px;
-  padding-left: 7.5px;
-  padding-right: 7.5px;
-}
-
-.invoice__info__total__text {
-  font-family: "Montserrat-SemiBold";
-  font-size: 14px;
-}
-
-.invoice__info__total__right {
-  display: flex;
-  width: 50%;
-  justify-content: flex-end;
-}
-
-.invoice__info__total__currency {
-  position: absolute;
-  margin-right: 55px;
-}
-
-.invoice__addvoucher__container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 15px;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
-  background-color: #fff;
-  padding-top: 5px;
-  padding-bottom: 5px;
-}
-
-.invoice__addvoucher {
-  display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  margin-top: 2.5px;
   justify-content: space-between;
   width: 100%;
-  background-color: #f5f5f5;
-  border-radius: 1000px;
-  padding: 2.5px;
+}
+
+.invoice__additional-items__item__info__title {
+  font-family: "Montserrat-SemiBold";
+  font-size: 11.5px;
+}
+
+.invoice__additional-items__item__info__price-quantity {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  justify-content: space-between;
   align-items: center;
-  margin-left: 5px;
+}
+
+.invoice__additional-items__item__info__price {
+  font-family: "Montserrat-SemiBold";
+  font-size: 12px;
+}
+
+.invoice__additional-items__item__info__quantity {
+  display: flex;
+  flex-direction: row;
+  gap: 5px;
+  background-color: #000;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1000px;
+  padding: 1px;
   margin-right: 5px;
 }
 
-.invoice__addvoucher__text {
-  font-family: "Montserrat-Medium";
-  font-size: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
-  color: #c6cacd;
-}
-
-.invoice__addvoucher__icon {
-  padding: 5px 8px;
-  background-color: #fff;
-  border-radius: 1000px;
-}
-
-.invoice__addvoucher__icon svg {
-  margin-top: 2px;
-}
-
-.invoice__placeorder {
+.invoice__additional-items__item__info__quantity__button {
+  border: none;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #2d71f8;
-  height: 45px;
+  background-color: transparent;
+  font-family: "Montserrat-Medium";
+  color: #fff;
+  font-size: 14px;
 }
 
-.invoice__placeorder__text {
+.invoice__additional-items__item__info__quantity__number {
   font-family: "Montserrat-Medium";
+  font-size: 12px;
+  color: #fff;
+}
+
+.invoice__receipt {
+  display: flex;
+  flex-direction: column;
+  padding: 15px;
+  border-radius: 10px;
+  border: 1.6px solid #f5f5f5;
+}
+
+.invoice__receipt__title {
+  font-family: "Montserrat-SemiBold";
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.invoice__receipt__payment-methods {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.invoice__receipt__payment-method {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 62.5px;
+  height: 50px;
+  border: 1.6px solid #f5f5f5;
+  border-radius: 7.5px;
+}
+
+.invoice__receipt__payment-method-active {
+  background-color: #000;
+  border: 1.6px solid transparent;
+}
+
+.invoice__receipt__payment-method__name {
+  font-family: "Montserrat-SemiBold";
+  font-size: 10px;
+  margin-top: 5px;
+  color: #8392a7;
+}
+
+.invoice__receipt__payment-method__name-active {
+  color: #fff;
+}
+
+.invoice__receipt__info {
+  display: flex;
+  flex-direction: column;
+  margin-top: 5px;
+}
+
+.invoice__receipt__info__amount-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 5px;
+  padding-bottom: 4px;
+}
+
+.invoice__receipt__info__amount-row__title {
+  font-family: "Montserrat-Medium";
+  font-size: 12px;
+  color: #8392a7;
+}
+
+.invoice__receipt__info__amount-row__amount {
+  font-family: "Montserrat-SemiBold";
+  font-size: 13px;
+}
+
+.invoice__receipt__info__amount-row__total {
+  font-family: "Montserrat-SemiBold";
+  font-size: 13px;
+}
+
+.invoice__receipt__info__total {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 10px;
+  border-top: 1.6px dashed #f5f5f5;
+  padding-top: 10px;
+}
+
+.invoice__receipt__info__total__title {
+  font-family: "Montserrat-SemiBold";
+  font-size: 14px;
+  color: #8392a7;
+}
+
+.invoice__receipt__info__total__amount {
+  font-family: "Montserrat-SemiBold";
+  font-size: 14px;
+}
+
+.invoice__receipt__info__pay-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+  border: none;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 10px;
+  font-family: "Montserrat-SemiBold";
   font-size: 12px;
   color: #fff;
 }

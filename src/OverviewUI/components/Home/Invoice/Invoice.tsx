@@ -1,12 +1,13 @@
-import Info from "./Info/Info";
+import AdditionalItems from "./AdditionalItems/AdditionalItems";
+import Receipt from "./Receipt/Receipt";
 
 const Invoice = () => {
   return (
     <div className="invoice">
       <div className="invoice__main">
-        <span className="invoice__title">Invoice</span>
+        <AdditionalItems />
+        <Receipt />
       </div>
-      <Info />
     </div>
   );
 };

@@ -7,7 +7,7 @@ const InlineProduct = ({ name, quantity, brand, price }: ProductProps) => {
       <div className="inlineproduct__left">
         <div className="inlineproduct__image__container">
           <img
-            src="/img/shopping.png"
+            src="/img/leche-pascual.png"
             alt="inlineproduct"
             className="inlineproduct__image"
           />

@@ -5,7 +5,7 @@ const Product = ({ name, category, categoryColor, price }: ProductProps) => {
   return (
     <div className="product">
       <div className="product__image__container">
-        <img src="/img/shopping.png" alt="Product" className="product__image" />
+        <img src="/img/leche-pascual.png" alt="Product" className="product__image" />
       </div>
 
       <span className="product__name">{name}</span>

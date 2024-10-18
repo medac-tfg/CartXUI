@@ -7,7 +7,7 @@ import { ProductScreenProps } from "./@types/products";
 const Products = ({ listView }: ProductScreenProps) => {
   return !listView ? (
     <div className="products">
-      {Array(12)
+      {Array(48)
         .fill(0)
         .map((_, index) => (
           <Product
@@ -23,7 +23,7 @@ const Products = ({ listView }: ProductScreenProps) => {
   ) : (
     <div className="product-list">
       <span className="product-list__title">Lista de productos</span>
-      {Array(12)
+      {Array(48)
         .fill(0)
         .map((_, index) => (
           <InlineProduct
