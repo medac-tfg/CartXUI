@@ -1,0 +1,30 @@
+.home {
+  position: relative;
+  display: flex;
+  padding: 10px;
+  width: 65%;
+  height: 100vh;
+  flex-direction: column;
+  background-color: #f5f5f5;
+  overflow: hidden;
+}
+
+.product__wrapper {
+  overflow-y: auto;
+  scrollbar-width: none; 
+  padding-bottom: 20px;
+}
+
+.home__manage-list-view {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  border-radius: 1000px;
+  background-color: #2d71f8;
+  top: calc(100vh - 60px);
+  right: 15px;
+}

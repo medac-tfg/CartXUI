@@ -1,4 +1,5 @@
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, ipcMain } from "electron";
+import registerStartUIListeners from "./controllers/startController";
 
 declare const OVERVIEWUI_WEBPACK_ENTRY: string;
 declare const OVERVIEWUI_PRELOAD_WEBPACK_ENTRY: string;
@@ -39,7 +40,11 @@ const createWindows = (): void => {
   startWindow.webContents.openDevTools();
 };
 
-app.on("ready", createWindows);
+app.on("ready", () => {
+  registerStartUIListeners(ipcMain);
+  
+  createWindows();
+});
 
 app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {

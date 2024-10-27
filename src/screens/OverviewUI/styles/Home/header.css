@@ -1,0 +1,71 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.header__left {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.header__icon {
+  padding: 5px 8px;
+  background-color: #f1f4f6;
+  border-radius: 1000px;
+}
+
+.header__icon svg {
+  margin-top: 2px;
+}
+
+.header__date,
+.header__hour,
+.header__manageorder {
+  display: flex;
+  flex-direction: row;
+  background-color: #fff;
+  border-radius: 1000px;
+  padding: 5px;
+  align-items: center;
+  justify-content: center;
+}
+
+.header__date {
+  margin-right: 5px;
+}
+
+.header__date__text {
+  font-family: "Montserrat-SemiBold";
+  font-size: 12px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.header__hour__text {
+  font-family: "Montserrat-SemiBold";
+  font-size: 12px;
+  margin-left: 10px;
+  margin-right: 7.5px;
+}
+
+.header__am-pm {
+  font-family: "Montserrat-Medium";
+  font-size: 12px;
+  color: #c6cacd;
+  margin-right: 10px;
+}
+
+.header__manageorder__text {
+  font-family: "Montserrat-SemiBold";
+  font-size: 12px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.header__icon__blue {
+  background-color: rgba(44, 112, 247, 0.1);
+}
