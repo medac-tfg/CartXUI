@@ -1,0 +1,19 @@
+{
+  "manage_order": "Manage Order",
+  "item": "Item",
+  "items": "Items",
+  "product_list": "Product List",
+  "brand": "Brand",
+  "plastic_bag": "Plastic Bag",
+  "paper_bag": "Paper Bag",
+  "reuseable_bag": "Reuseable Bag",
+  "payment_receipt": "Receipt",
+  "payment_method-card": "Card",
+  "payment_method-cash": "Cash",
+  "payment_method-qr": "QR",
+  "payment_subtotal": "Subtotal",
+  "payment_discount": "Discount",
+  "payment_total-tax": "Total Tax",
+  "payment_total": "Total",
+  "payment_finish-order": "Finish Order"
+}

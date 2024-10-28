@@ -1,0 +1,19 @@
+{
+  "manage_order": "Gérer la Commande",
+  "item": "Article",
+  "items": "Articles",
+  "product_list": "Liste de Produits",
+  "brand": "Marque",
+  "plastic_bag": "Sac en Plastique",
+  "paper_bag": "Sac en Papier",
+  "reuseable_bag": "Sac Réutilisable",
+  "payment_receipt": "Reçu",
+  "payment_method-card": "Carte",
+  "payment_method-cash": "Espèces",
+  "payment_method-qr": "QR",
+  "payment_subtotal": "Sous-total",
+  "payment_discount": "Remise",
+  "payment_total-tax": "Taxe Totale",
+  "payment_total": "Total",
+  "payment_finish-order": "Terminer la Commande"
+}

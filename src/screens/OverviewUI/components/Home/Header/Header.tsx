@@ -1,3 +1,5 @@
+import "../../../i18n/config";
+import { useTranslation } from "react-i18next";
 import { useState, useEffect } from "react";
 import { FiCalendar, FiClock, FiSliders } from "react-icons/fi";
 
@@ -5,10 +7,21 @@ const Header = () => {
   const [dateString, setDateString] = useState("");
   const [timeString, setTimeString] = useState("");
   const [amPm, setAmPm] = useState("");
+  const { i18n, t } = useTranslation();
+
+  const capitalizeWords = (str: string) => {
+    return str
+      .split(" ")
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(" ");
+  };
 
   useEffect(() => {
     const updateDateTime = () => {
       const now = new Date();
+
+      // Use current language for date formatting
+      const locale = i18n.language || "en-US"; // Fallback to 'en-US' if language is not set
 
       const dateOptions: Intl.DateTimeFormatOptions = {
         weekday: "short",
@@ -16,7 +29,8 @@ const Header = () => {
         month: "short",
         year: "numeric",
       };
-      const formattedDate = now.toLocaleDateString("en-US", dateOptions);
+      const formattedDate = now.toLocaleDateString(locale, dateOptions);
+      const capitalizedDate = capitalizeWords(formattedDate);
 
       const timeOptions: Intl.DateTimeFormatOptions = {
         hour: "2-digit",
@@ -27,7 +41,7 @@ const Header = () => {
 
       const [time, period] = formattedTime.split(" ");
 
-      setDateString(formattedDate);
+      setDateString(capitalizedDate);
       setTimeString(time);
       setAmPm(period);
     };
@@ -56,7 +70,7 @@ const Header = () => {
         </div>
       </div>
       <div className="header__manageorder">
-        <span className="header__manageorder__text">Manage Order</span>
+        <span className="header__manageorder__text">{t("manage_order")}</span>
         <div className="header__icon header__icon__blue">
           <FiSliders color="#2c70f7" size={14} />
         </div>

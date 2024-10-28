@@ -1,0 +1,19 @@
+{
+  "manage_order": "Gestionar Comanda",
+  "item": "Article",
+  "items": "Articles",
+  "product_list": "Llista de Productes",
+  "brand": "Marca",
+  "plastic_bag": "Bossa de Plàstic",
+  "paper_bag": "Bossa de Paper",
+  "reuseable_bag": "Bossa Reutilitzable",
+  "payment_receipt": "Rebut",
+  "payment_method-card": "Targeta",
+  "payment_method-cash": "Efectiu",
+  "payment_method-qr": "QR",
+  "payment_subtotal": "Subtotal",
+  "payment_discount": "Descompte",
+  "payment_total-tax": "Impost Total",
+  "payment_total": "Total",
+  "payment_finish-order": "Finalitzar Comanda"
+}

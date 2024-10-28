@@ -1,6 +1,7 @@
 export type LanguageProps = {
   title: string;
+  code: string;
   flag: string | JSX.Element;
   active: boolean;
-  handleLanguage: (title: string) => void;
+  handleLanguage: (title: string, code: string) => void;
 };

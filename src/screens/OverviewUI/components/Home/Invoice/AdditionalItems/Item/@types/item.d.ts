@@ -1,5 +1,5 @@
 export type AdditionalItemProps = {
-  name: string;
+  titleKey: string;
   price: number;
   image: string;
   selectedQuantity: number;

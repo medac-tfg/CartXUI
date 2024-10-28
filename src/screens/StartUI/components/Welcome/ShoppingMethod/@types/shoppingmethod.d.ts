@@ -1,6 +1,6 @@
 export type ShoppingMethodProps = {
   option: string;
-  title: string;
+  titleKey: string;
   icon: string;
   height: string;
   handleShoppingMethod: (title: string) => void;

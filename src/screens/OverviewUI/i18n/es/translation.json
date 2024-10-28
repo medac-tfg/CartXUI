@@ -1,0 +1,19 @@
+{
+  "manage_order": "Gestionar Pedido",
+  "item": "Artículo",
+  "items": "Artículos",
+  "product_list": "Lista de Productos",
+  "brand": "Marca",
+  "plastic_bag": "Bolsa de Plástico",
+  "paper_bag": "Bolsa de Papel",
+  "reuseable_bag": "Bolsa Reutilizable",
+  "payment_receipt": "Recibo",
+  "payment_method-card": "Tarjeta",
+  "payment_method-cash": "Efectivo",
+  "payment_method-qr": "QR",
+  "payment_subtotal": "Subtotal",
+  "payment_discount": "Descuento",
+  "payment_total-tax": "Total Impuestos",
+  "payment_total": "Total",
+  "payment_finish-order": "Finalizar Pedido"
+}

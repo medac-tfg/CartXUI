@@ -5,21 +5,21 @@ const AdditionalItems = () => {
   const [items, setItems] = useState([
     {
       id: 1,
-      name: "Bolsa de Plástico",
+      titleKey: "plastic_bag",
       price: 0.1,
       image: "/img/shopping-bag.png",
       selectedQuantity: 0,
     },
     {
       id: 2,
-      name: "Bolsa de Cartón",
+      titleKey: "paper_bag",
       price: 0.15,
       image: "/img/shopping-bag-cardboard.png",
       selectedQuantity: 0,
     },
     {
       id: 3,
-      name: "Bolsa Reutilizable",
+      titleKey: "reuseable_bag",
       price: 0.2,
       image: "/img/shopping-bag-reusable.png",
       selectedQuantity: 0,
@@ -39,7 +39,7 @@ const AdditionalItems = () => {
       {items.map((item) => (
         <Item
           key={item.id}
-          name={item.name}
+          titleKey={item.titleKey}
           price={item.price}
           image={item.image}
           selectedQuantity={item.selectedQuantity}

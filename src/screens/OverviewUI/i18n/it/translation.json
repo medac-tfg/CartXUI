@@ -1,0 +1,19 @@
+{
+  "manage_order": "Gestisci Ordine",
+  "item": "Articolo",
+  "items": "Articoli",
+  "product_list": "Lista Prodotti",
+  "brand": "Marca",
+  "plastic_bag": "Sacchetto di Plastica",
+  "paper_bag": "Sacchetto di Carta",
+  "reuseable_bag": "Borsa Riutilizzabile",
+  "payment_receipt": "Ricevuta",
+  "payment_method-card": "Carta",
+  "payment_method-cash": "Contanti",
+  "payment_method-qr": "QR",
+  "payment_subtotal": "Totale Parziale",
+  "payment_discount": "Sconto",
+  "payment_total-tax": "Tassa Totale",
+  "payment_total": "Totale",
+  "payment_finish-order": "Concludi Ordine"
+}

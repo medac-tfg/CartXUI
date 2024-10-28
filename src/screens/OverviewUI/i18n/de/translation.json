@@ -1,0 +1,19 @@
+{
+  "manage_order": "Bestellung Verwalten",
+  "item": "Artikel",
+  "items": "Artikel",
+  "product_list": "Produktliste",
+  "brand": "Marke",
+  "plastic_bag": "Plastiktüte",
+  "paper_bag": "Papiertüte",
+  "reuseable_bag": "Wiederverwendbare Tüte",
+  "payment_receipt": "Beleg",
+  "payment_method-card": "Karte",
+  "payment_method-cash": "Bargeld",
+  "payment_method-qr": "QR",
+  "payment_subtotal": "Zwischensumme",
+  "payment_discount": "Rabatt",
+  "payment_total-tax": "Gesamtsteuer",
+  "payment_total": "Gesamt",
+  "payment_finish-order": "Bestellung Abschließen"
+}

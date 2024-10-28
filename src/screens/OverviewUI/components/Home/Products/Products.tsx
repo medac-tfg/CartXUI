@@ -1,3 +1,6 @@
+import "../../../i18n/config";
+import { useTranslation } from "react-i18next";
+
 import Product from "./Product/Product";
 import InlineProduct from "./InlineProduct/InlineProduct";
 
@@ -5,6 +8,8 @@ import InlineProduct from "./InlineProduct/InlineProduct";
 import { ProductScreenProps } from "./@types/products";
 
 const Products = ({ listView }: ProductScreenProps) => {
+  const { t } = useTranslation();
+
   return !listView ? (
     <div className="products">
       {Array(48)
@@ -22,7 +27,7 @@ const Products = ({ listView }: ProductScreenProps) => {
     </div>
   ) : (
     <div className="product-list">
-      <span className="product-list__title">Lista de productos</span>
+      <span className="product-list__title">{t("product_list")}</span>
       {Array(48)
         .fill(0)
         .map((_, index) => (

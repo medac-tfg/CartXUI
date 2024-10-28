@@ -24,7 +24,7 @@ const createWindows = (): void => {
 
   overviewWindow.loadURL(OVERVIEWUI_WEBPACK_ENTRY);
 
-  overviewWindow.webContents.openDevTools();
+  //overviewWindow.webContents.openDevTools();
 
   const startWindow = new BrowserWindow({
     height: 480,
@@ -37,7 +37,7 @@ const createWindows = (): void => {
 
   startWindow.loadURL(STARTUI_WEBPACK_ENTRY);
 
-  startWindow.webContents.openDevTools();
+  //startWindow.webContents.openDevTools();
 };
 
 app.on("ready", () => {

@@ -1,27 +1,34 @@
+import "../../../i18n/config";
+import { useTranslation } from "react-i18next";
+
 // eslint-disable-next-line import/no-unresolved
 import { ShoppingMethodProps } from "./@types/shoppingmethod";
 
 const ShoppingMethod = ({
   option,
-  title,
+  titleKey,
   icon,
   height,
   handleShoppingMethod,
 }: ShoppingMethodProps) => {
+  const { t } = useTranslation();
+
   return (
     <div
       className="welcome__shopping-method"
-      onClick={() => handleShoppingMethod(title)}
+      onClick={() => handleShoppingMethod(titleKey)}
     >
       <div className="welcome__shopping-method-info">
-        <span className="welcome__shopping-method-option">Option {option}</span>
-        <span className="welcome__shopping-method-title">{title}</span>
+        <span className="welcome__shopping-method-option">
+          {t("option")} {option}
+        </span>
+        <span className="welcome__shopping-method-title">{t(titleKey)}</span>
       </div>
       <div className="welcome__shopping-method-icon-container">
         <img
           className="welcome__shopping-method-icon"
           src={icon}
-          alt={title}
+          alt={t(titleKey)}
           style={{ height }}
         />
       </div>
