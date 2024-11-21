@@ -18,7 +18,7 @@ const ManageListView = ({
 
   return (
     <button onClick={handleButtonClick} className="home__manage-list-view">
-      <FiList size={18} color="#fff" />
+      <FiList size={24} color="#fff" />
     </button>
   );
 };
