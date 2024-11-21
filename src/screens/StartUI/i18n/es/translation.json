@@ -4,5 +4,8 @@
   "option_shopping-cart": "Carrito",
   "option_shopping-basket": "Cesta",
   "option_by-hand": "A mano",
-  "select_language": "Seleccionar idioma"
+  "select_language": "Seleccionar idioma",
+  "enter_products_hand": "Entra a CartX con los productos en la mano y espera a que el sistema los detecte",
+  "enter_cart": "Coloca el carrito en CartX (no entres tú) y espera a que el sistema detecte los productos",
+  "enter_basket": "Coloca la cesta en CartX (no entres tú) y espera a que el sistema detecte los productos"
 }

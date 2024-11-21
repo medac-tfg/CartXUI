@@ -1,5 +1,8 @@
-import { app, BrowserWindow, ipcMain } from "electron";
-import registerStartUIListeners from "./controllers/startController";
+import dotenv from "dotenv";
+dotenv.config();
+
+import { app, BrowserWindow } from "electron";
+import { registerStartUIListeners } from "./controllers/startController";
 
 declare const OVERVIEWUI_WEBPACK_ENTRY: string;
 declare const OVERVIEWUI_PRELOAD_WEBPACK_ENTRY: string;
@@ -12,7 +15,10 @@ const windowConfig = {
   //fullscreen: true,
 };
 
-const createWindows = (): void => {
+const createWindows = (): {
+  overviewWindow: BrowserWindow;
+  startWindow: BrowserWindow;
+} => {
   const overviewWindow = new BrowserWindow({
     height: 480,
     width: 800,
@@ -38,12 +44,14 @@ const createWindows = (): void => {
   startWindow.loadURL(STARTUI_WEBPACK_ENTRY);
 
   //startWindow.webContents.openDevTools();
+
+  return { overviewWindow, startWindow };
 };
 
 app.on("ready", () => {
-  registerStartUIListeners(ipcMain);
-  
-  createWindows();
+  const { overviewWindow, startWindow } = createWindows();
+
+  registerStartUIListeners(startWindow);
 });
 
 app.on("window-all-closed", () => {

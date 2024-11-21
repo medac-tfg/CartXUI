@@ -4,5 +4,8 @@
   "option_shopping-cart": "Carrello della Spesa",
   "option_shopping-basket": "Cestino della Spesa",
   "option_by-hand": "A Mano",
-  "select_language": "Seleziona Lingua"
+  "select_language": "Seleziona Lingua",
+  "enter_products_hand": "Entra in CartX con i prodotti in mano e aspetta che il sistema li rilevi",
+  "enter_cart": "Posiziona il carrello in CartX (non entrare tu) e aspetta che il sistema rilevi i prodotti",
+  "enter_basket": "Posiziona il cestino in CartX (non entrare tu) e aspetta che il sistema rilevi i prodotti"
 }

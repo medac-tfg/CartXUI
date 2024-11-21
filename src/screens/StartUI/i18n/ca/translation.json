@@ -4,5 +4,8 @@
   "option_shopping-cart": "Carret",
   "option_shopping-basket": "Cistella",
   "option_by-hand": "A mà",
-  "select_language": "Seleccionar idioma"
+  "select_language": "Seleccionar idioma",
+  "enter_products_hand": "Entra a CartX amb els productes a la mà i espera que el sistema els detecti",
+  "enter_cart": "Col·loca el carretó a CartX (no hi entris tu) i espera que el sistema detecti els productes",
+  "enter_basket": "Col·loca la cistella a CartX (no hi entris tu) i espera que el sistema detecti els productes"
 }

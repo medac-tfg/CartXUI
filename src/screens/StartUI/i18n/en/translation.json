@@ -4,5 +4,8 @@
   "option_shopping-cart": "Shopping Cart",
   "option_shopping-basket": "Shopping Basket",
   "option_by-hand": "By Hand",
-  "select_language": "Select Language"
+  "select_language": "Select Language",
+  "enter_products_hand": "Enter CartX with the products in hand and wait for the system to detect them",
+  "enter_cart": "Place the cart in CartX (do not enter yourself) and wait for the system to detect the products",
+  "enter_basket": "Place the basket in CartX (do not enter yourself) and wait for the system to detect the products"
 }

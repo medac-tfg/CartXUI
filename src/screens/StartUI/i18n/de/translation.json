@@ -4,5 +4,8 @@
   "option_shopping-cart": "Einkaufswagen",
   "option_shopping-basket": "Einkaufskorb",
   "option_by-hand": "Zu Fuß",
-  "select_language": "Sprache Auswählen"
+  "select_language": "Sprache Auswählen",
+  "enter_products_hand": "Betreten Sie CartX mit den Produkten in der Hand und warten Sie, bis das System sie erkennt",
+  "enter_cart": "Stellen Sie den Einkaufswagen in CartX (gehen Sie nicht hinein) und warten Sie, bis das System die Produkte erkennt",
+  "enter_basket": "Stellen Sie den Korb in CartX (gehen Sie nicht hinein) und warten Sie, bis das System die Produkte erkennt"
 }
