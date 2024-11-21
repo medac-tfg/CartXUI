@@ -14,8 +14,8 @@
 }
 
 .product__image__container {
-  width: 114px;
-  height: 80px;
+  width: 150px;
+  height: 120px;
   border-radius: 10px;
   background-color: #f1f4f6;
   display: flex;
@@ -31,7 +31,7 @@
 
 .product__name {
   font-family: "Montserrat-SemiBold";
-  font-size: 11px;
+  font-size: 14px;
   margin-top: 5px;
 }
 
@@ -57,13 +57,13 @@
 
 .product__info__category__text {
   font-family: "Montserrat-SemiBold";
-  font-size: 9px;
+  font-size: 12px;
   color: #c6cacd;
 }
 
 .product__info__price {
   font-family: "Montserrat-SemiBold";
-  font-size: 12px;
+  font-size: 15px;
 }
 
 .product-list {
@@ -76,7 +76,7 @@
 
 .product-list__title {
   font-family: "Montserrat-SemiBold";
-  font-size: 14px;
+  font-size: 16px;
   margin-bottom: 5px;
 }
 
@@ -95,9 +95,9 @@
 }
 
 .inlineproduct__image__container {
-  width: 45px;
-  height: 45px;
-  border-radius: 5px;
+  width: 55px;
+  height: 55px;
+  border-radius: 7px;
   background-color: #f1f4f6;
   margin-right: 10px;
   display: flex;
@@ -119,24 +119,24 @@
 
 .inlineproduct__name {
   font-family: "Montserrat-SemiBold";
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .inlineproduct__quantity {
   font-family: "Montserrat-SemiBold";
-  font-size: 11px;
+  font-size: 13px;
   color: #000;
 }
 
 .inlineproduct__brand {
   font-family: "Montserrat-Medium";
-  font-size: 11px;
+  font-size: 13px;
   color: #c6cacd;
 }
 
 .inlineproduct__price {
   font-family: "Montserrat-SemiBold";
-  font-size: 12px;
+  font-size: 14px;
 }
 
 .inlineproduct__right {

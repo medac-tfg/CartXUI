@@ -57,13 +57,13 @@ const Header = () => {
       <div className="header__left">
         <div className="header__date">
           <div className="header__icon">
-            <FiCalendar className="icon" color="#2c70f7" size={14} />
+            <FiCalendar className="icon" color="#2c70f7" size={16} />
           </div>
           <span className="header__date__text">{dateString}</span>
         </div>
         <div className="header__hour">
           <div className="header__icon">
-            <FiClock color="#2c70f7" size={14} />
+            <FiClock color="#2c70f7" size={16} />
           </div>
           <span className="header__hour__text">{timeString}</span>
           <span className="header__am-pm">{amPm}</span>
@@ -72,7 +72,7 @@ const Header = () => {
       <div className="header__manageorder">
         <span className="header__manageorder__text">{t("manage_order")}</span>
         <div className="header__icon header__icon__blue">
-          <FiSliders color="#2c70f7" size={14} />
+          <FiSliders color="#2c70f7" size={16} />
         </div>
       </div>
     </div>

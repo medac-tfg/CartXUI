@@ -10,7 +10,7 @@
   flex-direction: column;
   background-color: #fff;
   padding: 7px;
-  min-width: 80px;
+  min-width: 90px;
   border-radius: 10px;
   border: 1.5px solid transparent;
 }
@@ -21,8 +21,8 @@
 }
 
 .category__icon {
-  width: 30px;
-  height: 30px;
+  width: 45px;
+  height: 45px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -36,13 +36,13 @@
 
 .category__name {
   font-family: "Montserrat-SemiBold";
-  font-size: 12px;
+  font-size: 15px;
   margin-top: 15px;
 }
 
 .category__item-count {
   font-family: "Montserrat-Medium";
   color: #c6cacd;
-  font-size: 10px;
+  font-size: 13px;
   margin-top: 5px;
 }

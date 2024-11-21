@@ -16,7 +16,7 @@ const PaymentMethod = ({
 
   return (
     <div className={containerClass} onClick={setMethodActive}>
-      <Icon color={active ? "#fff" : "#8392a7"} size={18} />
+      <Icon color={active ? "#fff" : "#8392a7"} size={24} />
       <span className={methodNameClass}>{name}</span>
     </div>
   );

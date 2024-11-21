@@ -20,8 +20,8 @@ const createWindows = (): {
   startWindow: BrowserWindow;
 } => {
   const overviewWindow = new BrowserWindow({
-    height: 480,
-    width: 800,
+    height: 600,
+    width: 1024,
     webPreferences: {
       preload: OVERVIEWUI_PRELOAD_WEBPACK_ENTRY,
     },
@@ -33,8 +33,8 @@ const createWindows = (): {
   //overviewWindow.webContents.openDevTools();
 
   const startWindow = new BrowserWindow({
-    height: 480,
-    width: 800,
+    height: 600,
+    width: 1024,
     webPreferences: {
       preload: STARTUI_PRELOAD_WEBPACK_ENTRY,
     },

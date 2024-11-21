@@ -11,19 +11,19 @@ const SHOPPING_METHODS = [
     option: "1",
     titleKey: "option_shopping-cart",
     icon: "/img/shopping-cart.png",
-    height: "110px",
+    height: "140px",
   },
   {
     option: "2",
     titleKey: "option_shopping-basket",
     icon: "/img/shopping-basket.png",
-    height: "130px",
+    height: "170px",
   },
   {
     option: "3",
     titleKey: "option_by-hand",
     icon: "/img/shopping-hand.png",
-    height: "110px",
+    height: "140px",
   },
 ];
 

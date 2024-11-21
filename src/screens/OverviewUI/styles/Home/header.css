@@ -13,7 +13,7 @@
 }
 
 .header__icon {
-  padding: 5px 8px;
+  padding: 8px 11px;
   background-color: #f1f4f6;
   border-radius: 1000px;
 }
@@ -40,28 +40,28 @@
 
 .header__date__text {
   font-family: "Montserrat-SemiBold";
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 10px;
   margin-right: 15px;
 }
 
 .header__hour__text {
   font-family: "Montserrat-SemiBold";
-  font-size: 12px;
+  font-size: 14px;
   margin-left: 10px;
   margin-right: 7.5px;
 }
 
 .header__am-pm {
   font-family: "Montserrat-Medium";
-  font-size: 12px;
+  font-size: 14px;
   color: #c6cacd;
   margin-right: 10px;
 }
 
 .header__manageorder__text {
   font-family: "Montserrat-SemiBold";
-  font-size: 12px;
+  font-size: 14px;
   margin-right: 10px;
   margin-left: 10px;
 }
