@@ -46,17 +46,17 @@ const LANGUAGES = [
     code: "en",
   },
   {
-    title: "French",
+    title: "Français",
     flag: "🇫🇷",
     code: "fr",
   },
   {
-    title: "Italian",
+    title: "Italiano",
     flag: "🇮🇹",
     code: "it",
   },
   {
-    title: "German",
+    title: "Deutsch",
     flag: "🇩🇪",
     code: "de",
   },
