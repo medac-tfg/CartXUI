@@ -26,7 +26,7 @@ const Category = ({
       onClick={() => setActiveCategory(index)}
     >
       <div className={iconClassName}>
-        <Icon size={16} color={active ? "#fff" : "#000"} />
+        <Icon size={22} color={active ? "#fff" : "#000"} />
       </div>
       <span className="category__name">{name}</span>
       <span className="category__item-count">
