@@ -49,7 +49,7 @@ const createWindows = (): {
 app.on("ready", () => {
   const { overviewWindow, startWindow } = createWindows();
 
-  registerStartUIListeners(startWindow);
+  registerStartUIListeners(startWindow, overviewWindow);
 });
 
 app.on("window-all-closed", () => {

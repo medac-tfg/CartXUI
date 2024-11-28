@@ -1,0 +1,13 @@
+.splash-screen-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  flex-direction: column;
+}
+
+.branding-text {
+  font-family: "Montserrat-SemiBold";
+  font-size: 20px;
+  color: #000;
+}

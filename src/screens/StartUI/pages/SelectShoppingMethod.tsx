@@ -70,9 +70,11 @@ const Home = () => {
 
   useEffect(() => {
     window.electron.onOrderStarted(
-      (data: { shoppingMethodInstructions: string; ticketId: string }) => {
-        const { shoppingMethodInstructions, ticketId } = data;
-        alert(`Order started. Ticket ID: ${ticketId}`);
+      (data: { shoppingMethodInstructions: string }) => {
+        const { shoppingMethodInstructions } = data;
+        alert(
+          `Order started in StartUI with instructions: ${shoppingMethodInstructions}`
+        );
         navigate("/instructions", {
           state: { shoppingMethodInstructions },
         });
