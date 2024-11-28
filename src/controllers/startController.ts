@@ -4,14 +4,14 @@ import { startOrder } from "../api/endpoints/startOrder";
 // remember (invoke / handle) is for two way communication between main and renderer processes
 // rembember (send / on) is for one way communication between main and renderer processes
 
-const getTargetRoute = (shoppingMethod: string): string => {
+const getMethodInstructions = (shoppingMethod: string): string => {
   switch (shoppingMethod) {
     case "shopping-cart":
-      return "/shopping-cart-instructions";
+      return "enter_cart";
     case "shopping-basket":
-      return "/shopping-basket-instructions";
+      return "enter_basket";
     default:
-      return "/by-hand-instructions";
+      return "enter_products_hand";
   }
 };
 
@@ -31,9 +31,9 @@ const handleShoppingMethodSelection = async (
       return;
     }
 
-    const targetRoute = getTargetRoute(shoppingMethod);
+    const shoppingMethodInstructions = getMethodInstructions(shoppingMethod);
     browserWindow.webContents.send("orderStarted", {
-      targetRoute,
+      shoppingMethodInstructions,
       ticketId: data.ticketId,
     });
   } catch (error) {

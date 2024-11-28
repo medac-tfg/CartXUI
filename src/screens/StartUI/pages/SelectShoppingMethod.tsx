@@ -70,12 +70,12 @@ const Home = () => {
 
   useEffect(() => {
     window.electron.onOrderStarted(
-      (data: { targetRoute: string; ticketId: string }) => {
-        const { targetRoute, ticketId } = data;
-        alert(
-          `Order started. Target route: ${targetRoute}. Ticket ID: ${ticketId}`
-        );
-        navigate(targetRoute);
+      (data: { shoppingMethodInstructions: string; ticketId: string }) => {
+        const { shoppingMethodInstructions, ticketId } = data;
+        alert(`Order started. Ticket ID: ${ticketId}`);
+        navigate("/instructions", {
+          state: { shoppingMethodInstructions },
+        });
       }
     );
   }, []);

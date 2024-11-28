@@ -2,9 +2,7 @@ import { HashRouter as Router, Route, Routes } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 
 import SelectShoppingMethod from "./pages/SelectShoppingMethod";
-import ShoppingCartInstructions from "./pages/Instructions/ShoppingCartInstructions";
-import ShoppingBasketInstructions from "./pages/Instructions/ShoppingBasketInstructions";
-import ByHandInstructions from "./pages/Instructions/ByHandInstructions";
+import Instructions from "./pages/Instructions";
 
 declare global {
   interface Window {
@@ -21,14 +19,9 @@ const App = () => {
       <Routes>
         <Route path="/" element={<SelectShoppingMethod />} />
         <Route
-          path="/shopping-cart-instructions"
-          element={<ShoppingCartInstructions />}
+          path="/instructions"
+          element={<Instructions />}
         />
-        <Route
-          path="/shopping-basket-instructions"
-          element={<ShoppingBasketInstructions />}
-        />
-        <Route path="/by-hand-instructions" element={<ByHandInstructions />} />
       </Routes>
     </Router>
   );
