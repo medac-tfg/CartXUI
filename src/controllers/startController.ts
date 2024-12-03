@@ -3,9 +3,6 @@ import { startOrder } from "../api/endpoints/startOrder";
 import GlobalStore from "../utils/globalStore";
 import { handleOrderStart } from "./overviewController";
 
-// remember (invoke / handle) is for two way communication between main and renderer processes
-// rembember (send / on) is for one way communication between main and renderer processes
-
 const getMethodInstructions = (shoppingMethod: string): string => {
   switch (shoppingMethod) {
     case "shopping-cart":
@@ -22,12 +19,10 @@ const handleShoppingMethodSelection = async (
   overviewUIWindow: Electron.BrowserWindow,
   shoppingMethod: string
 ) => {
-  // primero checkeamos si hay una compra en curso
-
-  shoppingMethod = shoppingMethod.replace("option_", "");
+  const cleanedMethod = shoppingMethod.replace("option_", "");
 
   try {
-    const data = await startOrder(shoppingMethod);
+    const data = await startOrder(cleanedMethod);
     if (!data) {
       // show error in ui
       console.log("Error when starting order");
@@ -36,7 +31,7 @@ const handleShoppingMethodSelection = async (
 
     GlobalStore.setTicketId(data.ticketId);
 
-    const shoppingMethodInstructions = getMethodInstructions(shoppingMethod);
+    const shoppingMethodInstructions = getMethodInstructions(cleanedMethod);
     startUIWindow.webContents.send("orderStarted", {
       shoppingMethodInstructions,
     });
