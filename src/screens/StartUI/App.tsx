@@ -1,8 +1,17 @@
-import { HashRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  HashRouter as Router,
+  Route,
+  Routes,
+  useNavigate,
+} from "react-router-dom";
 import { createRoot } from "react-dom/client";
+import { useEffect } from "react";
 
 import SelectShoppingMethod from "./pages/SelectShoppingMethod";
 import Instructions from "./pages/Instructions";
+
+// eslint-disable-next-line
+import { RouteChange } from "./@types/app";
 
 declare global {
   interface Window {
@@ -13,19 +22,28 @@ declare global {
   }
 }
 
-const App = () => {
+const AppContent = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    window.electron.onChangeRoute(({ route, state }: RouteChange) => {
+      navigate(route, { state });
+    });
+  }, [navigate]);
+
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<SelectShoppingMethod />} />
-        <Route
-          path="/instructions"
-          element={<Instructions />}
-        />
-      </Routes>
-    </Router>
+    <Routes>
+      <Route path="/" element={<SelectShoppingMethod />} />
+      <Route path="/instructions" element={<Instructions />} />
+    </Routes>
   );
 };
+
+const App = () => (
+  <Router>
+    <AppContent />
+  </Router>
+);
 
 const root = createRoot(document.getElementById("root"));
 root.render(<App />);

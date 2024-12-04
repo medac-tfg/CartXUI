@@ -35,7 +35,10 @@ const getProductsInCart = async () => {
  * @param {Electron.BrowserWindow} overviewUIWindow The window instance to send messages to.
  */
 const handleOrderStart = async (overviewUIWindow: Electron.BrowserWindow) => {
-  overviewUIWindow.webContents.send("orderStarted");
+  overviewUIWindow.webContents.send("changeRoute", {
+    route: "/home",
+    state: {},
+  });
 
   /*
     Here we must distinguish between shopping methods:

@@ -1,10 +1,9 @@
 import "../i18n/config";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Language from "../components/Welcome/Language/Language";
 import ShoppingMethod from "../components/Welcome/ShoppingMethod/ShoppingMethod";
-import { useNavigate } from "react-router-dom";
 
 const SHOPPING_METHODS = [
   {
@@ -63,24 +62,9 @@ const LANGUAGES = [
 ];
 
 const Home = () => {
-  const navigate = useNavigate();
   const { t, i18n } = useTranslation();
   const [canSelectMethod, setCanSelectMethod] = useState(true);
   const [language, setLanguage] = useState("English");
-
-  useEffect(() => {
-    window.electron.onOrderStarted(
-      (data: { shoppingMethodInstructions: string }) => {
-        const { shoppingMethodInstructions } = data;
-        alert(
-          `Order started in StartUI with instructions: ${shoppingMethodInstructions}`
-        );
-        navigate("/instructions", {
-          state: { shoppingMethodInstructions },
-        });
-      }
-    );
-  }, []);
 
   const handleShoppingMethod = (title: string) => {
     if (!canSelectMethod) return;

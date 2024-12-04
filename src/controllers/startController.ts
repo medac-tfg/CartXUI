@@ -32,9 +32,11 @@ const handleShoppingMethodSelection = async (
     GlobalStore.setTicketId(data.ticketId);
 
     const shoppingMethodInstructions = getMethodInstructions(cleanedMethod);
-    startUIWindow.webContents.send("orderStarted", {
-      shoppingMethodInstructions,
+    startUIWindow.webContents.send("changeRoute", {
+      route: "/instructions",
+      state: { shoppingMethodInstructions },
     });
+    
     handleOrderStart(overviewUIWindow);
   } catch (error) {
     // show error in ui

@@ -1,16 +1,4 @@
-import { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
-
 const SplashScreen = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    window.electron.onOrderStarted(() => {
-      console.log(`Received order start on OverviewUI`);
-      navigate("/home");
-    });
-  }, []);
-
   return (
     <div className="splash-screen-container">
       <span className="branding-text">Welcome to CartX!</span>
