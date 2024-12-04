@@ -7,38 +7,43 @@ import InlineProduct from "./InlineProduct/InlineProduct";
 // eslint-disable-next-line import/no-unresolved
 import { ProductScreenProps } from "./@types/products";
 
-const Products = ({ listView }: ProductScreenProps) => {
+const Products = ({
+  listView,
+  products,
+  activeCategory,
+}: ProductScreenProps) => {
   const { t } = useTranslation();
+
+  const filteredProducts =
+    activeCategory === "All"
+      ? products
+      : products.filter((product) => product.category === activeCategory);
 
   return !listView ? (
     <div className="products">
-      {Array(48)
-        .fill(0)
-        .map((_, index) => (
-          <Product
-            key={index}
-            name="Leche Pascual"
-            quantity={2}
-            category="Lácteos"
-            categoryColor="#ff0000"
-            price="20,00€"
-          />
-        ))}
+      {filteredProducts.map((product, index) => (
+        <Product
+          key={index}
+          name={product.name}
+          quantity={product.quantity}
+          category={product.category}
+          categoryColor={product.categoryColor}
+          price={product.price}
+        />
+      ))}
     </div>
   ) : (
     <div className="product-list">
       <span className="product-list__title">{t("product_list")}</span>
-      {Array(48)
-        .fill(0)
-        .map((_, index) => (
-          <InlineProduct
-            key={index}
-            name="Cartón de Leche"
-            brand="Pascual"
-            quantity={2}
-            price="20,00€"
-          />
-        ))}
+      {filteredProducts.map((product, index) => (
+        <InlineProduct
+          key={index}
+          name={product.name}
+          brand={product.brand}
+          quantity={product.quantity}
+          price={product.price}
+        />
+      ))}
     </div>
   );
 };

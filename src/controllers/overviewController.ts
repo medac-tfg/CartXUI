@@ -9,6 +9,7 @@ const RFID_SCAN_CONFIG = {
 
 const getProductsInCart = async () => {
   try {
+    console.log("Starting RFID tag scan...");
     const tags = await getRFIDTags(
       RFID_SCAN_CONFIG.SCAN_TIME,
       RFID_SCAN_CONFIG.EXTEND_TIME
@@ -47,10 +48,15 @@ const handleOrderStart = async (overviewUIWindow: Electron.BrowserWindow) => {
     2. Shopping basket (same as cart)
     3. By hand (start scanning immediately once we detect human presence)
   */
-  console.log("Starting RFID tag scan...");
+  
+  const { products, categories } = await getProductsInCart();
+  overviewUIWindow.webContents.send("setProductsAndCategories", {
+    products: products,
+    categories: categories,
+  });
 
-  const products = await getProductsInCart();
-  console.log("added products. Return data:", products);
+  console.log("Products added:", products);
+  console.log("Categories added:", categories);
 };
 
 export { handleOrderStart };

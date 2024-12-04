@@ -1,24 +1,30 @@
 import { useState } from "react";
 import { IoFastFoodOutline } from "react-icons/io5";
+
 import Category from "./Category/Category";
 
-const Categories = () => {
-  const [activeCategory, setActiveCategory] = useState(0);
+import { CategoriesProps } from "./@types/categories";
 
+const Categories = ({ categories, productCount, activeCategory, setActiveCategory }: CategoriesProps) => {
   return (
     <div className="categories">
-      {Array(100)
-        .fill(0)
-        .map((_, index) => (
-          <Category
-            index={index}
-            name="Category"
-            Icon={IoFastFoodOutline}
-            itemCount={10}
-            active={activeCategory === index}
-            setActiveCategory={setActiveCategory}
-          />
-        ))}
+      <Category
+        name="All"
+        Icon={IoFastFoodOutline}
+        productQuantity={productCount}
+        active={activeCategory === "All"}
+        setActiveCategory={setActiveCategory}
+      />
+      { categories.map((category, index) => (
+        <Category
+          key={index}
+          name={category.name}
+          Icon={IoFastFoodOutline}
+          productQuantity={category.productQuantity}
+          active={activeCategory === category.name}
+          setActiveCategory={setActiveCategory}
+        />
+      )) }
     </div>
   );
 };

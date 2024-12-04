@@ -1,8 +1,7 @@
 export type CategoryProps = {
-  index: number;
   name: string;
   Icon: React.ComponentType<any>;
-  itemCount: number;
+  productQuantity: number;
   active?: boolean;
-  setActiveCategory: React.Dispatch<React.SetStateAction<number>>;
+  setActiveCategory: React.Dispatch<React.SetStateAction<string>>;
 };

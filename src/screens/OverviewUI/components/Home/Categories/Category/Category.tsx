@@ -5,10 +5,9 @@ import { useTranslation } from "react-i18next";
 import { CategoryProps } from "./@types/category";
 
 const Category = ({
-  index,
   name,
   Icon,
-  itemCount,
+  productQuantity,
   active,
   setActiveCategory,
 }: CategoryProps) => {
@@ -23,15 +22,17 @@ const Category = ({
   return (
     <div
       className={containerClassName}
-      onClick={() => setActiveCategory(index)}
+      onClick={() => setActiveCategory(name)}
     >
       <div className={iconClassName}>
         <Icon size={22} color={active ? "#fff" : "#000"} />
       </div>
       <span className="category__name">{name}</span>
       <span className="category__item-count">
-        {itemCount}{" "}
-        {itemCount > 1 ? t("items").toLowerCase() : t("item").toLowerCase()}
+        {productQuantity}{" "}
+        {productQuantity !== 1
+          ? t("items").toLowerCase()
+          : t("item").toLowerCase()}
       </span>
     </div>
   );

@@ -30,7 +30,7 @@ const createWindows = (): {
 
   overviewWindow.loadURL(OVERVIEWUI_WEBPACK_ENTRY);
 
-  //overviewWindow.webContents.openDevTools();
+  overviewWindow.webContents.openDevTools();
 
   const startWindow = new BrowserWindow({
     webPreferences: {
