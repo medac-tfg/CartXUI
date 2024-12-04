@@ -19,11 +19,6 @@ const getProductsInCart = async () => {
 
     const ticketId = GlobalStore.getTicketId();
     const data = await addProducts(Array.from(tags), ticketId);
-    if (!data) {
-      // show error in ui
-      console.log("Error when adding products");
-      return;
-    }
 
     return data;
   } catch (error) {
@@ -48,15 +43,21 @@ const handleOrderStart = async (overviewUIWindow: Electron.BrowserWindow) => {
     2. Shopping basket (same as cart)
     3. By hand (start scanning immediately once we detect human presence)
   */
-  
-  const { products, categories } = await getProductsInCart();
+
+  const data = await getProductsInCart();
+  if (!data) {
+    // show error in ui
+    console.log("Error when adding products");
+    return;
+  }
+
   overviewUIWindow.webContents.send("setProductsAndCategories", {
-    products: products,
-    categories: categories,
+    products: data.products,
+    categories: data.categories,
   });
 
-  console.log("Products added:", products);
-  console.log("Categories added:", categories);
+  console.log("Products added:", data.products);
+  console.log("Categories added:", data.categories);
 };
 
 export { handleOrderStart };
