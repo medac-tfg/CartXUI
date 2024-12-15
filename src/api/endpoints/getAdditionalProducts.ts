@@ -1,11 +1,9 @@
 import api from "..";
 import { AxiosError } from "axios";
 
-export const addProducts = async (tags: string[], ticketId: string) => {
+export const getAdditionalProducts = async (ticketId: string) => {
   try {
-    const { data } = await api.post(`/api/cart/${ticketId}/addProducts`, {
-      tags,
-    });
+    const { data } = await api.get(`/api/cart/${ticketId}/getAdditionalProducts`);
 
     return data;
   } catch (error) {

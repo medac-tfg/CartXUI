@@ -1,10 +1,43 @@
-import { getRFIDTags } from "../utils/getRFIDTags";
+import { ipcMain } from "electron";
+
 import { addProducts } from "../api/endpoints/addProducts";
+import { getAdditionalProducts } from "../api/endpoints/getAdditionalProducts";
+import { changeAdditionalProductQuantity } from "../api/endpoints/changeAdditionalProductQuantity";
+
+import { getRFIDTags } from "../utils/getRFIDTags";
 import GlobalStore from "../utils/globalStore";
 
 const RFID_SCAN_CONFIG = {
   SCAN_TIME: 5000, // Initial scan duration (5 seconds)
   EXTEND_TIME: 2000, // Additional time for each detected tag
+};
+
+const getTicketAdditionalProducts = async () => {
+  const ticketId = GlobalStore.getTicketId();
+  const data = await getAdditionalProducts(ticketId);
+
+  return data;
+};
+
+const handleAdditionalProductQuantityChange = async (
+  overviewUIWindow: Electron.BrowserWindow,
+  {
+    id,
+    quantity,
+  }: {
+    id: string;
+    quantity: number;
+  }
+) => {
+  const ticketId = GlobalStore.getTicketId();
+  const data = await changeAdditionalProductQuantity(id, quantity, ticketId);
+  if (!data) {
+    // show error in ui
+    console.log("Error when changing additional product quantity");
+    return;
+  }
+
+  overviewUIWindow.webContents.send("additionalProductsChanged", data);
 };
 
 const getProductsInCart = async () => {
@@ -31,9 +64,15 @@ const getProductsInCart = async () => {
  * @param {Electron.BrowserWindow} overviewUIWindow The window instance to send messages to.
  */
 const handleOrderStart = async (overviewUIWindow: Electron.BrowserWindow) => {
+  const additionalProducts = await getTicketAdditionalProducts();
+  if (!additionalProducts) {
+    // show error in ui
+    console.log("Error when getting additional products");
+  }
+
   overviewUIWindow.webContents.send("changeRoute", {
     route: "/home",
-    state: {},
+    state: { additionalProducts },
   });
 
   /*
@@ -60,4 +99,13 @@ const handleOrderStart = async (overviewUIWindow: Electron.BrowserWindow) => {
   console.log("Categories added:", data.categories);
 };
 
-export { handleOrderStart };
+const registerOverviewUIListeners = (
+  startUIWindow: Electron.BrowserWindow,
+  overviewUIWindow: Electron.BrowserWindow
+): void => {
+  ipcMain.on("additionalProductChange", (_event, args) =>
+    handleAdditionalProductQuantityChange(overviewUIWindow, args)
+  );
+};
+
+export { registerOverviewUIListeners, handleOrderStart };

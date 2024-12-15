@@ -10,7 +10,6 @@ import { useEffect } from "react";
 import SplashScreen from "./pages/SplashScreen";
 import Home from "./pages/Home";
 
-// eslint-disable-next-line
 import { RouteChange } from "./@types/app";
 
 const AppContent = () => {

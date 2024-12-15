@@ -10,7 +10,6 @@ import { useEffect } from "react";
 import SelectShoppingMethod from "./pages/SelectShoppingMethod";
 import Instructions from "./pages/Instructions";
 
-// eslint-disable-next-line
 import { RouteChange } from "./@types/app";
 
 declare global {

@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { ProductProps } from "../@types/product";
 
 const Product = ({ name, category, categoryColor, price }: ProductProps) => {

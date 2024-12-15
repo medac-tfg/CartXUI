@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useLocation } from "react-router-dom";
 
 import Header from "../components/Home/Header/Header";
 import Categories from "../components/Home/Categories/Categories";
@@ -6,15 +7,18 @@ import Invoice from "../components/Home/Invoice/Invoice";
 import Products from "../components/Home/Products/Products";
 import ManageListView from "../components/Home/ManageListView/ManageListView";
 
-// eslint-disable-next-line
 import { ProductsAndCategories } from "../@types/home";
 
 const Home = () => {
+  const location = useLocation();
   const [listView, setListView] = useState(false);
   const productListRef = useRef<HTMLDivElement>(null);
   const [products, setProducts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [additionalProducts, setAdditionalProducts] = useState(
+    location.state?.additionalProducts || []
+  );
 
   useEffect(() => {
     window.electron.onSetProductsAndCategories(
@@ -23,6 +27,11 @@ const Home = () => {
         setCategories(categories);
       }
     );
+
+    window.electron.onAdditionalProductChange((data: any) => {
+      console.log("setting additional products", data);
+      setAdditionalProducts(data);
+    });
   }, []);
 
   return (
@@ -50,7 +59,7 @@ const Home = () => {
           productListRef={productListRef}
         />
       </div>
-      <Invoice />
+      <Invoice additionalProducts={additionalProducts} />
     </div>
   );
 };

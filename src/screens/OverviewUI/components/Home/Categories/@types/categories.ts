@@ -1,4 +1,3 @@
-// eslint-disable-next-line
 import { CategoryProps } from "../Category/@types/category";
 
 export type CategoriesProps = {

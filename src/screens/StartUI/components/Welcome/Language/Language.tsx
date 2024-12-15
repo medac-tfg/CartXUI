@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { LanguageProps } from "./@types/language";
 
 const Language = ({ title, code, flag, active, handleLanguage }: LanguageProps) => {

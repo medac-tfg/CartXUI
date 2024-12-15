@@ -1,6 +1,5 @@
 import { FiList } from "react-icons/fi";
 
-// eslint-disable-next-line import/no-unresolved
 import { ManageListViewProps } from "./@types/button";
 
 const ManageListView = ({

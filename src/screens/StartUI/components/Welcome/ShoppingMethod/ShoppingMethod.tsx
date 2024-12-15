@@ -1,7 +1,6 @@
 import "../../../i18n/config";
 import { useTranslation } from "react-i18next";
 
-// eslint-disable-next-line import/no-unresolved
 import { ShoppingMethodProps } from "./@types/shoppingmethod";
 
 const ShoppingMethod = ({

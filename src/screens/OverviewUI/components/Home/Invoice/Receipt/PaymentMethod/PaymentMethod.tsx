@@ -1,4 +1,3 @@
-// eslint-disable-next-line import/no-unresolved
 import { PaymentMethodProps } from "./@types/pmethod";
 
 const PaymentMethod = ({

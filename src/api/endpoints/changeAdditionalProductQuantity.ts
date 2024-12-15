@@ -1,11 +1,19 @@
 import api from "..";
 import { AxiosError } from "axios";
 
-export const addProducts = async (tags: string[], ticketId: string) => {
+export const changeAdditionalProductQuantity = async (
+  id: string,
+  quantity: number,
+  ticketId: string
+) => {
   try {
-    const { data } = await api.post(`/api/cart/${ticketId}/addProducts`, {
-      tags,
-    });
+    const { data } = await api.post(
+      `/api/cart/${ticketId}/changeAdditionalItemQuantity`,
+      {
+        itemId: id,
+        quantity,
+      }
+    );
 
     return data;
   } catch (error) {

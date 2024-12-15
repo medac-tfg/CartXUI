@@ -4,7 +4,6 @@ import { useTranslation } from "react-i18next";
 import Product from "./Product/Product";
 import InlineProduct from "./InlineProduct/InlineProduct";
 
-// eslint-disable-next-line import/no-unresolved
 import { ProductScreenProps } from "./@types/products";
 
 const Products = ({

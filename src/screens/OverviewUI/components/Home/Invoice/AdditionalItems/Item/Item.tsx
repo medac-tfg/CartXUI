@@ -1,20 +1,19 @@
 import "../../../../../i18n/config";
 import { useTranslation } from "react-i18next";
 
-// eslint-disable-next-line import/no-unresolved
 import { AdditionalItemProps } from "./@types/item";
 
 const Item = ({
   titleKey,
   price,
   image,
-  selectedQuantity,
+  quantity,
   onQuantityChange,
 }: AdditionalItemProps) => {
   const { t } = useTranslation();
 
   const changeQuantity = (number: number) =>
-    onQuantityChange(selectedQuantity + number);
+    onQuantityChange(quantity + number);
 
   return (
     <div className="invoice__additional-items__item">
@@ -40,7 +39,7 @@ const Item = ({
               -
             </button>
             <span className="invoice__additional-items__item__info__quantity__number">
-              {selectedQuantity}
+              {quantity}
             </span>
             <button
               type="button"

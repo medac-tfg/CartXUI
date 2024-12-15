@@ -2,6 +2,6 @@ export type AdditionalItemProps = {
   titleKey: string;
   price: number;
   image: string;
-  selectedQuantity: number;
+  quantity: number;
   onQuantityChange: (newQuantity: number) => void;
 };

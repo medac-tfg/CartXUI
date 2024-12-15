@@ -3,6 +3,7 @@ dotenv.config();
 
 import { app, BrowserWindow } from "electron";
 import { registerStartUIListeners } from "./controllers/startController";
+import { registerOverviewUIListeners } from "./controllers/overviewController";
 
 declare const OVERVIEWUI_WEBPACK_ENTRY: string;
 declare const OVERVIEWUI_PRELOAD_WEBPACK_ENTRY: string;
@@ -30,7 +31,7 @@ const createWindows = (): {
 
   overviewWindow.loadURL(OVERVIEWUI_WEBPACK_ENTRY);
 
-  overviewWindow.webContents.openDevTools();
+  //overviewWindow.webContents.openDevTools();
 
   const startWindow = new BrowserWindow({
     webPreferences: {
@@ -50,6 +51,7 @@ app.on("ready", () => {
   const { overviewWindow, startWindow } = createWindows();
 
   registerStartUIListeners(startWindow, overviewWindow);
+  registerOverviewUIListeners(startWindow, overviewWindow);
 });
 
 app.on("window-all-closed", () => {
