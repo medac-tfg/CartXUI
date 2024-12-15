@@ -3,14 +3,14 @@ import { useTranslation } from "react-i18next";
 
 import { ProductProps } from "../@types/product";
 
-const InlineProduct = ({ name, quantity, brand, price }: ProductProps) => {
+const InlineProduct = ({ name, image, quantity, brand, priceNoVat }: ProductProps) => {
   const { t } = useTranslation();
   return (
     <div className="inlineproduct">
       <div className="inlineproduct__left">
         <div className="inlineproduct__image__container">
           <img
-            src="/img/leche-pascual.png"
+            src={image}
             alt="inlineproduct"
             className="inlineproduct__image"
           />
@@ -24,7 +24,7 @@ const InlineProduct = ({ name, quantity, brand, price }: ProductProps) => {
         </div>
       </div>
       <div className="inlineproduct__right">
-        <span className="inlineproduct__price">{price}</span>
+        <span className="inlineproduct__price">{priceNoVat}</span>
       </div>
     </div>
   );

@@ -24,10 +24,11 @@ const Products = ({
         <Product
           key={index}
           name={product.name}
+          image={product.image}
           quantity={product.quantity}
           category={product.category}
           categoryColor={product.categoryColor}
-          price={product.price}
+          priceNoVat={product.priceNoVat}
         />
       ))}
     </div>
@@ -38,9 +39,10 @@ const Products = ({
         <InlineProduct
           key={index}
           name={product.name}
+          image={product.image}
           brand={product.brand}
           quantity={product.quantity}
-          price={product.price}
+          priceNoVat={product.priceNoVat}
         />
       ))}
     </div>

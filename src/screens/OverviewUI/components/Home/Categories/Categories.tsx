@@ -18,19 +18,16 @@ const Categories = ({
         active={activeCategory === "All"}
         setActiveCategory={setActiveCategory}
       />
-      {categories.map((category, index) => {
-        console.log(category);
-        return (
-          <Category
-            key={index}
-            name={category.name}
-            Icon={getIcon(category.icon.lib, category.icon.icon)}
-            productQuantity={category.productQuantity}
-            active={activeCategory === category.name}
-            setActiveCategory={setActiveCategory}
-          />
-        );
-      })}
+      {categories.map((category, index) => (
+        <Category
+          key={index}
+          name={category.name}
+          Icon={getIcon(category.icon.lib, category.icon.icon)}
+          productQuantity={category.productQuantity}
+          active={activeCategory === category.name}
+          setActiveCategory={setActiveCategory}
+        />
+      ))}
     </div>
   );
 };

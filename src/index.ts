@@ -1,9 +1,10 @@
 import dotenv from "dotenv";
 dotenv.config();
 
-import { app, BrowserWindow } from "electron";
+import { app, BrowserWindow, session } from "electron";
 import { registerStartUIListeners } from "./controllers/startController";
 import { registerOverviewUIListeners } from "./controllers/overviewController";
+import { modifyCSP } from "./utils/modifyCSP";
 
 declare const OVERVIEWUI_WEBPACK_ENTRY: string;
 declare const OVERVIEWUI_PRELOAD_WEBPACK_ENTRY: string;
@@ -52,6 +53,8 @@ app.on("ready", () => {
 
   registerStartUIListeners(startWindow, overviewWindow);
   registerOverviewUIListeners(startWindow, overviewWindow);
+
+  modifyCSP(session.defaultSession);
 });
 
 app.on("window-all-closed", () => {

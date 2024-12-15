@@ -1,7 +1,8 @@
 export type ProductProps = {
   name: string;
+  image: string;
   quantity: number;
-  price: string;
+  priceNoVat: string;
   brand?: string;
   category?: string;
   categoryColor?: string;

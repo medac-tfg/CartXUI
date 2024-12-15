@@ -29,7 +29,6 @@ const Home = () => {
     );
 
     window.electron.onAdditionalProductChange((data: any) => {
-      console.log("setting additional products", data);
       setAdditionalProducts(data);
     });
   }, []);

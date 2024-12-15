@@ -21,18 +21,34 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .product__image {
-  height: 100%;
-  width: auto;
+  max-width: 100%; 
+  max-height: 100%;
   border-radius: 5px;
+}
+
+.product__name__quantity__container {
+  display: flex;
+  flex-direction: row;
+  margin-top: 5px;
 }
 
 .product__name {
   font-family: "Montserrat-SemiBold";
   font-size: 14px;
-  margin-top: 5px;
+  max-width: 120px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.product__quantity {
+  font-family: "Montserrat-SemiBold";
+  font-size: 13px;
+  color: #000;
 }
 
 .product__info__container {
@@ -103,11 +119,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .inlineproduct__image {
-  height: 100%;
-  width: auto;
+  max-width: 100%;
+  max-height: 100%;
   border-radius: 5px;
 }
 

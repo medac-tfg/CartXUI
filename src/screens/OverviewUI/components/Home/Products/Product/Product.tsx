@@ -1,13 +1,29 @@
 import { ProductProps } from "../@types/product";
 
-const Product = ({ name, category, categoryColor, price }: ProductProps) => {
+const Product = ({
+  name,
+  image,
+  quantity,
+  category,
+  categoryColor,
+  priceNoVat,
+}: ProductProps) => {
   return (
     <div className="product">
       <div className="product__image__container">
-        <img src="/img/leche-pascual.png" alt="Product" className="product__image" />
+        <img
+          src={image}
+          alt="Product"
+          className="product__image"
+        />
       </div>
 
-      <span className="product__name">{name}</span>
+      <div className="product__name__quantity__container">
+        <span className="product__name">{name}</span>
+        <span className="product__quantity">
+          &nbsp;-&nbsp;(x{quantity})
+        </span>
+      </div>
 
       <div className="product__info__container">
         <div
@@ -21,7 +37,7 @@ const Product = ({ name, category, categoryColor, price }: ProductProps) => {
             {category}
           </span>
         </div>
-        <span className="product__info__price">{price}</span>
+        <span className="product__info__price">{priceNoVat}</span>
       </div>
     </div>
   );
