@@ -1,22 +1,26 @@
 import "../../../i18n/config";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 
 import Product from "./Product/Product";
 import InlineProduct from "./InlineProduct/InlineProduct";
 
-import { ProductScreenProps } from "./@types/products";
+import { Products, ProductScreenProps } from "./@types/products";
 
-const Products = ({
-  listView,
-  products,
-  activeCategory,
-}: ProductScreenProps) => {
+const Products = ({ listView, activeCategory }: ProductScreenProps) => {
   const { t } = useTranslation();
+  const [products, setProducts] = useState<Products>([]);
 
   const filteredProducts =
     activeCategory === "All"
       ? products
       : products.filter((product) => product.category === activeCategory);
+
+  useEffect(() => {
+    window.electron.onSetProducts((products: Products) => {
+      setProducts(products);
+    });
+  }, []);
 
   return !listView ? (
     <div className="products">

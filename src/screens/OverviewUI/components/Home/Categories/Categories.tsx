@@ -1,20 +1,32 @@
-import Category from "./Category/Category";
+import { useState, useEffect } from "react";
 import { getIcon } from "../../../utils/getIcon";
 
-import { CategoriesProps } from "./@types/categories";
+import Category from "./Category/Category";
 
-const Categories = ({
-  categories,
-  productCount,
-  activeCategory,
-  setActiveCategory,
-}: CategoriesProps) => {
+import { Categories, CategoriesProps } from "./@types/categories";
+
+const Categories = ({ activeCategory, setActiveCategory }: CategoriesProps) => {
+  const [categories, setCategories] = useState([]);
+
+  const calculateProductCount = () => {
+    return categories.reduce(
+      (acc, category) => acc + category.productQuantity,
+      0
+    );
+  };
+
+  useEffect(() => {
+    window.electron.onSetCategories((categories: Categories) => {
+      setCategories(categories);
+    });
+  }, []);
+
   return (
     <div className="categories">
       <Category
         name="All"
         Icon={getIcon("io5", "IOList")}
-        productQuantity={productCount}
+        productQuantity={calculateProductCount()}
         active={activeCategory === "All"}
         setActiveCategory={setActiveCategory}
       />

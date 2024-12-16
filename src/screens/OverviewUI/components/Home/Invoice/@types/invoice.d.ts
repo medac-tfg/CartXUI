@@ -6,6 +6,5 @@ export type InvoiceType = {
 };
 
 export type InvoiceComponentProps = {
-  additionalProducts: Array<any>;
-  invoice: InvoiceType;
+  initialAdditionalProducts: Array<any>;
 };

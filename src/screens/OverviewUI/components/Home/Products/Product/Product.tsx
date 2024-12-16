@@ -31,12 +31,7 @@ const Product = ({
           className="product__info__category"
           style={{ backgroundColor: categoryColor }}
         >
-          <span
-            className="product__info__category__text"
-            style={{ color: categoryColor }}
-          >
-            {category}
-          </span>
+          <span className="product__info__category__text">{category}</span>
         </div>
         <span className="product__info__price">{price}</span>
       </div>

@@ -1,8 +1,13 @@
-import { CategoryProps } from "../Category/@types/category";
-
 export type CategoriesProps = {
-  categories: CategoryProps[];
-  productCount: number;
   activeCategory: string;
   setActiveCategory: (index: string) => void;
 };
+
+export type Categories = {
+  name: string;
+  productQuantity: number;
+  icon: {
+    lib: string;
+    icon: string;
+  };
+}[];

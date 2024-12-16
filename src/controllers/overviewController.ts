@@ -171,11 +171,9 @@ const handleOrderStart = async (
     return;
   }
 
-  overviewUIWindow.webContents.send("setProductsAndCategories", {
-    products: data.products,
-    categories: data.categories,
-  });
-
+  overviewUIWindow.webContents.send("setProducts", data.products);
+  overviewUIWindow.webContents.send("setCategories", data.categories);
+  
   await refreshTicketInvoice();
 
   console.log("Products added:", data.products);
