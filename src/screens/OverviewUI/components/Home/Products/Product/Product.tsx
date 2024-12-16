@@ -8,7 +8,8 @@ const Product = ({
   categoryColor,
   priceWithTax,
 }: ProductProps) => {
-  const price = quantity > 1 ? `${priceWithTax * quantity}` : priceWithTax;
+  const price =
+    quantity > 1 ? `${(priceWithTax * quantity).toFixed(2)}` : priceWithTax;
 
   return (
     <div className="product">

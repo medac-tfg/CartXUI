@@ -13,7 +13,9 @@ const InlineProduct = ({
   const { t } = useTranslation();
   const price =
     quantity > 1
-      ? `${priceWithTax * quantity}€ (${priceWithTax}€ x${quantity})`
+      ? `${(priceWithTax * quantity).toFixed(
+          2
+        )}€ (${priceWithTax}€ x${quantity})`
       : priceWithTax;
 
   return (
