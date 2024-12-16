@@ -1,5 +1,6 @@
 import { ipcMain } from "electron";
 
+import { getTicketInvoice } from "../api/endpoints/getTicketInvoice";
 import { addProducts } from "../api/endpoints/addProducts";
 import { getAdditionalProducts } from "../api/endpoints/getAdditionalProducts";
 import { changeAdditionalProductQuantity } from "../api/endpoints/changeAdditionalProductQuantity";
@@ -7,10 +8,24 @@ import { changeAdditionalProductQuantity } from "../api/endpoints/changeAddition
 import { getRFIDTags } from "../utils/getRFIDTags";
 import GlobalStore from "../utils/globalStore";
 
+let overviewWindow: Electron.BrowserWindow | null = null;
+
 const RFID_SCAN_CONFIG = {
   SCAN_TIME: 5000, // Initial scan duration (5 seconds)
   EXTEND_TIME: 2000, // Additional time for each detected tag
 };
+
+const refreshTicketInvoice = async () => {
+  const ticketId = GlobalStore.getTicketId();
+  const data = await getTicketInvoice(ticketId);
+  if (!data) {
+    // show error in ui
+    console.log("Error when getting ticket invoice");
+    return;
+  }
+
+  overviewWindow?.webContents.send("ticketInvoiceChanged", data);
+}
 
 const getTicketAdditionalProducts = async () => {
   const ticketId = GlobalStore.getTicketId();
@@ -38,6 +53,8 @@ const handleAdditionalProductQuantityChange = async (
   }
 
   overviewUIWindow.webContents.send("additionalProductsChanged", data);
+
+  refreshTicketInvoice();
 };
 
 const getProductsInCart = async () => {
@@ -95,6 +112,8 @@ const handleOrderStart = async (overviewUIWindow: Electron.BrowserWindow) => {
     categories: data.categories,
   });
 
+  refreshTicketInvoice();
+
   console.log("Products added:", data.products);
   console.log("Categories added:", data.categories);
 };
@@ -103,6 +122,8 @@ const registerOverviewUIListeners = (
   startUIWindow: Electron.BrowserWindow,
   overviewUIWindow: Electron.BrowserWindow
 ): void => {
+  overviewWindow = overviewUIWindow;
+
   ipcMain.on("additionalProductChange", (_event, args) =>
     handleAdditionalProductQuantityChange(overviewUIWindow, args)
   );

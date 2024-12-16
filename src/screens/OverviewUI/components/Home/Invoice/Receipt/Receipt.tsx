@@ -8,13 +8,15 @@ import { IoIosCash } from "react-icons/io";
 import PaymentMethod from "./PaymentMethod/PaymentMethod";
 import AmountRow from "./AmountRow/AmountRow";
 
+import { InvoiceType } from "../@types/invoice";
+
 const PAYMENT_METHODS = [
   { name: "payment_method-card", Icon: FaCreditCard },
   { name: "payment_method-cash", Icon: IoIosCash },
   { name: "payment_method-qr", Icon: BsQrCodeScan },
 ];
 
-const Receipt = () => {
+const Receipt = ({ invoice }: { invoice: InvoiceType }) => {
   const [activePaymentMethod, setActivePaymentMethod] = useState(
     PAYMENT_METHODS[0]
   );
@@ -40,15 +42,25 @@ const Receipt = () => {
       </div>
 
       <div className="invoice__receipt__info">
-        <AmountRow title={t("payment_subtotal")} amount={100} hasDivider />
-        <AmountRow title={t("payment_discount")} amount={5} hasDivider />
-        <AmountRow title={t("payment_total-tax")} amount={10} />
+        <AmountRow
+          title={t("payment_subtotal")}
+          amount={invoice?.subtotal}
+          hasDivider
+        />
+        <AmountRow
+          title={t("payment_discount")}
+          amount={invoice?.discount}
+          hasDivider
+        />
+        <AmountRow title={t("payment_total-tax")} amount={invoice?.totalTax} />
 
         <div className="invoice__receipt__info__total">
           <span className="invoice__receipt__info__total__title">
             {t("payment_total")} :
           </span>
-          <span className="invoice__receipt__info__total__amount">115.00€</span>
+          <span className="invoice__receipt__info__total__amount">
+            {invoice.total}€
+          </span>
         </div>
 
         <button className="invoice__receipt__info__pay-button">

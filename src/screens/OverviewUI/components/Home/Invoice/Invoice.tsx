@@ -3,12 +3,12 @@ import Receipt from "./Receipt/Receipt";
 
 import { InvoiceComponentProps } from "./@types/invoice";
 
-const Invoice = ({ additionalProducts }: InvoiceComponentProps) => {
+const Invoice = ({ additionalProducts, invoice }: InvoiceComponentProps) => {
   return (
     <div className="invoice">
       <div className="invoice__main">
         <AdditionalItems itemList={additionalProducts} />
-        <Receipt />
+        <Receipt invoice={invoice} />
       </div>
     </div>
   );

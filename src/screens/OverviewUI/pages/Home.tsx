@@ -19,6 +19,12 @@ const Home = () => {
   const [additionalProducts, setAdditionalProducts] = useState(
     location.state?.additionalProducts || []
   );
+  const [invoice, setInvoice] = useState({
+    subtotal: 0,
+    discount: 0,
+    totalTax: 0,
+    total: 0,
+  });
 
   useEffect(() => {
     window.electron.onSetProductsAndCategories(
@@ -27,6 +33,15 @@ const Home = () => {
         setCategories(categories);
       }
     );
+
+    window.electron.onTicketInvoiceChange((data: any) => {
+      setInvoice({
+        total: data.total,
+        subtotal: data.subtotal,
+        discount: data.discount,
+        totalTax: data.totalTax,
+      });
+    });
 
     window.electron.onAdditionalProductChange((data: any) => {
       setAdditionalProducts(data);
@@ -58,7 +73,7 @@ const Home = () => {
           productListRef={productListRef}
         />
       </div>
-      <Invoice additionalProducts={additionalProducts} />
+      <Invoice additionalProducts={additionalProducts} invoice={invoice} />
     </div>
   );
 };

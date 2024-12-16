@@ -10,9 +10,8 @@ const AmountRow = ({ title, amount, hasDivider }: AmountRowProps) => {
         {title} :
       </span>
       <span className="invoice__receipt__info__amount-row__amount">
-        {title !== "Discount"
-          ? `${amount.toFixed(2)}€`
-          : `-${amount.toFixed(2)}€`}
+        {title === "Discount" ? "-" : ""}
+        {amount}€
       </span>
     </div>
   );
