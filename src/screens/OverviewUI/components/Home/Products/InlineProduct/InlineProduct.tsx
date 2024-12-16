@@ -1,5 +1,6 @@
 import "../../../../i18n/config";
 import { useTranslation } from "react-i18next";
+import { formatCurrency } from "../../../../utils/formatCurrency";
 
 import { ProductProps } from "../@types/product";
 
@@ -13,10 +14,10 @@ const InlineProduct = ({
   const { t } = useTranslation();
   const price =
     quantity > 1
-      ? `${(priceWithTax * quantity).toFixed(
-          2
-        )}€ (${priceWithTax}€ x${quantity})`
-      : priceWithTax;
+      ? `${formatCurrency(
+          priceWithTax * quantity
+        )} (${priceWithTax}€ x${quantity})`
+      : `${formatCurrency(priceWithTax)}€`;
 
   return (
     <div className="inlineproduct">

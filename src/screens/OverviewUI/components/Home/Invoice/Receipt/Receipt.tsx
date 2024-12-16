@@ -4,6 +4,7 @@ import { useTranslation } from "react-i18next";
 import { FaCreditCard } from "react-icons/fa";
 import { BsQrCodeScan } from "react-icons/bs";
 import { IoIosCash } from "react-icons/io";
+import { formatCurrency } from "../../../../utils/formatCurrency";
 
 import PaymentMethod from "./PaymentMethod/PaymentMethod";
 import AmountRow from "./AmountRow/AmountRow";
@@ -59,7 +60,7 @@ const Receipt = ({ invoice }: { invoice: InvoiceType }) => {
             {t("payment_total")} :
           </span>
           <span className="invoice__receipt__info__total__amount">
-            {invoice.total}€
+            {formatCurrency(invoice.total)}
           </span>
         </div>
 

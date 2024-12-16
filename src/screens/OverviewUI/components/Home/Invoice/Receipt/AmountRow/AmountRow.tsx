@@ -1,3 +1,4 @@
+import { formatCurrency } from "../../../../../utils/formatCurrency";
 import { AmountRowProps } from "./@types/arow";
 
 const AmountRow = ({ title, amount, hasDivider }: AmountRowProps) => {
@@ -11,7 +12,7 @@ const AmountRow = ({ title, amount, hasDivider }: AmountRowProps) => {
       </span>
       <span className="invoice__receipt__info__amount-row__amount">
         {title === "Discount" ? "-" : ""}
-        {amount}€
+        {formatCurrency(amount)}
       </span>
     </div>
   );

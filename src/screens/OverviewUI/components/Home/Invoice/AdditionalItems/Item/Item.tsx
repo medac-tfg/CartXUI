@@ -1,5 +1,6 @@
 import "../../../../../i18n/config";
 import { useTranslation } from "react-i18next";
+import { formatCurrency } from "../../../../../utils/formatCurrency";
 
 import { AdditionalItemProps } from "./@types/item";
 
@@ -28,7 +29,7 @@ const Item = ({
         </span>
         <div className="invoice__additional-items__item__info__price-quantity">
           <span className="invoice__additional-items__item__info__price">
-            {price.toFixed(2)}€
+            {formatCurrency(price)}
           </span>
           <div className="invoice__additional-items__item__info__quantity">
             <button

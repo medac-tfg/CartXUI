@@ -1,3 +1,5 @@
+import { formatCurrency } from "../../../../utils/formatCurrency";
+
 import { ProductProps } from "../@types/product";
 
 const Product = ({
@@ -9,7 +11,9 @@ const Product = ({
   priceWithTax,
 }: ProductProps) => {
   const price =
-    quantity > 1 ? `${(priceWithTax * quantity).toFixed(2)}` : priceWithTax;
+    quantity > 1
+      ? formatCurrency(priceWithTax * quantity)
+      : formatCurrency(priceWithTax);
 
   return (
     <div className="product">
@@ -34,7 +38,7 @@ const Product = ({
             {category}
           </span>
         </div>
-        <span className="product__info__price">{price}€</span>
+        <span className="product__info__price">{price}</span>
       </div>
     </div>
   );
