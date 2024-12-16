@@ -28,7 +28,7 @@ const Products = ({
           quantity={product.quantity}
           category={product.category}
           categoryColor={product.categoryColor}
-          priceNoVat={product.priceNoVat}
+          priceWithTax={product.priceWithTax}
         />
       ))}
     </div>
@@ -42,7 +42,7 @@ const Products = ({
           image={product.image}
           brand={product.brand}
           quantity={product.quantity}
-          priceNoVat={product.priceNoVat}
+          priceWithTax={product.priceWithTax}
         />
       ))}
     </div>

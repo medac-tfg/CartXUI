@@ -23,7 +23,7 @@ const AdditionalItems = ({ itemList }: AdditionalItemsComponentProps) => {
         <Item
           key={item._id}
           titleKey={item.name}
-          price={item.priceNoVat}
+          price={item.priceWithTax}
           image={item.image}
           quantity={item.quantity}
           onQuantityChange={(newQuantity) =>

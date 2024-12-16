@@ -6,7 +6,7 @@ const Product = ({
   quantity,
   category,
   categoryColor,
-  priceNoVat,
+  priceWithTax,
 }: ProductProps) => {
   return (
     <div className="product">
@@ -37,7 +37,7 @@ const Product = ({
             {category}
           </span>
         </div>
-        <span className="product__info__price">{priceNoVat}</span>
+        <span className="product__info__price">{priceWithTax}</span>
       </div>
     </div>
   );
