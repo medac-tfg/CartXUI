@@ -3,8 +3,19 @@ import { useTranslation } from "react-i18next";
 
 import { ProductProps } from "../@types/product";
 
-const InlineProduct = ({ name, image, quantity, brand, priceWithTax }: ProductProps) => {
+const InlineProduct = ({
+  name,
+  image,
+  quantity,
+  brand,
+  priceWithTax,
+}: ProductProps) => {
   const { t } = useTranslation();
+  const price =
+    quantity > 1
+      ? `${priceWithTax * quantity}€ (${priceWithTax}€ x${quantity})`
+      : priceWithTax;
+
   return (
     <div className="inlineproduct">
       <div className="inlineproduct__left">
@@ -24,7 +35,7 @@ const InlineProduct = ({ name, image, quantity, brand, priceWithTax }: ProductPr
         </div>
       </div>
       <div className="inlineproduct__right">
-        <span className="inlineproduct__price">{priceWithTax}</span>
+        <span className="inlineproduct__price">{price}</span>
       </div>
     </div>
   );
