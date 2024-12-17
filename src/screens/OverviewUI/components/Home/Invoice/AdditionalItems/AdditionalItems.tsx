@@ -6,15 +6,17 @@ const AdditionalItems = ({ itemList }: AdditionalItemsComponentProps) => {
   const [items, setItems] = useState(itemList);
 
   const updateQuantity = (id: number, quantity: number) => {
+    const safeQuantity = Math.max(0, quantity);
+
     setItems((prevItems) =>
       prevItems.map((item) =>
         item._id === id
-          ? { ...item, quantity: Math.max(0, quantity) }
+          ? { ...item, quantity: safeQuantity }
           : item
       )
     );
 
-    window.electron.handleAdditionalProductChange(id, quantity);
+    window.electron.handleAdditionalProductChange(id, safeQuantity);
   };
 
   return (
