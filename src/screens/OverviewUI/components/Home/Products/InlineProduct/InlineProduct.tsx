@@ -17,7 +17,7 @@ const InlineProduct = ({
       ? `${formatCurrency(
           priceWithTax * quantity
         )} (${priceWithTax}€ x${quantity})`
-      : `${formatCurrency(priceWithTax)}€`;
+      : `${formatCurrency(priceWithTax)}`;
 
   return (
     <div className="inlineproduct">
