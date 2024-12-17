@@ -12,10 +12,11 @@
   border-radius: 10px;
   background-color: #fff;
   justify-content: center;
+  max-width: 150px;
 }
 
 .product__image__container {
-  width: 155px;
+  width: 150px;
   height: 120px;
   border-radius: 10px;
   background-color: #f1f4f6;
@@ -40,7 +41,7 @@
 .product__name {
   font-family: "Montserrat-SemiBold";
   font-size: 14px;
-  max-width: 120px;
+  max-width: 100px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
