@@ -6,11 +6,13 @@ import {
 } from "react-router-dom";
 import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
+import { ToastContainer, ToastOptions, toast } from "react-toastify";
 
 import SelectShoppingMethod from "./pages/SelectShoppingMethod";
 import Instructions from "./pages/Instructions";
 
 import { RouteChange } from "./@types/app";
+import { ToastEventPayload } from "./@types/toast";
 
 declare global {
   interface Window {
@@ -30,6 +32,27 @@ const AppContent = () => {
     });
   }, [navigate]);
 
+  useEffect(() => {
+    window.electron.onToast(({ type, message }: ToastEventPayload) => {
+      const toastTypeMap: Record<string, ToastOptions["type"]> = {
+        success: "success",
+        info: "info",
+        warning: "warning",
+        error: "error",
+      };
+
+      const toastType = toastTypeMap[type] || "default";
+      toast(message, {
+        type: toastType,
+        style: {
+          fontFamily: "Montserrat-SemiBold",
+          fontSize: "14px",
+          width: "fit-content",
+        },
+      });
+    });
+  }, []);
+
   return (
     <Routes>
       <Route path="/" element={<SelectShoppingMethod />} />
@@ -40,6 +63,7 @@ const AppContent = () => {
 
 const App = () => (
   <Router>
+    <ToastContainer />
     <AppContent />
   </Router>
 );

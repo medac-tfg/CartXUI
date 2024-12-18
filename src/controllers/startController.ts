@@ -3,6 +3,15 @@ import { startOrder } from "../api/endpoints/startOrder";
 import GlobalStore from "../utils/globalStore";
 import { handleOrderStart } from "./overviewController";
 
+let startWindow: Electron.BrowserWindow | null = null;
+
+const sendErrorToast = (message: string): void => {
+  startWindow?.webContents.send("showToastMessage", {
+    type: "error",
+    message,
+  });
+};
+
 const getMethodInstructions = (shoppingMethod: string): string => {
   switch (shoppingMethod) {
     case "shopping-cart":
@@ -24,8 +33,11 @@ const handleShoppingMethodSelection = async (
   try {
     const data = await startOrder(cleanedMethod);
     if (!data) {
-      // show error in ui
       console.log("Error when starting order");
+
+      // Send an error message to the UI
+      sendErrorToast("Failed to start order. Contact support.");
+
       return;
     }
 
@@ -36,11 +48,13 @@ const handleShoppingMethodSelection = async (
       route: "/instructions",
       state: { shoppingMethodInstructions },
     });
-    
+
     handleOrderStart(overviewUIWindow);
   } catch (error) {
-    // show error in ui
     console.log("Error when starting order", error.message);
+
+    // Send an error message to the UI
+    sendErrorToast("Failed to start order. Contact support.");
   }
 };
 
@@ -48,6 +62,7 @@ const registerStartUIListeners = (
   startUIWindow: Electron.BrowserWindow,
   overviewUIWindow: Electron.BrowserWindow
 ): void => {
+  startWindow = startUIWindow;
   ipcMain.on("shoppingMethodSelected", (_event, args) =>
     handleShoppingMethodSelection(startUIWindow, overviewUIWindow, args)
   );

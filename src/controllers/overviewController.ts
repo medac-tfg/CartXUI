@@ -20,6 +20,13 @@ const RFID_SCAN_CONFIG = {
   EXTEND_TIME: 2000, // 2 seconds
 };
 
+const sendErrorToast = (message: string): void => {
+  overviewWindow?.webContents.send("showToastMessage", {
+    type: "error",
+    message,
+  });
+};
+
 /**
  * Refreshes the ticket invoice data in the overview UI.
  * Fetches the latest ticket invoice information and sends it to the front-end.
@@ -28,6 +35,10 @@ const refreshTicketInvoice = async (): Promise<void> => {
   const ticketId = GlobalStore.getTicketId();
   if (!ticketId) {
     console.error("No ticket ID found. Cannot refresh ticket invoice.");
+
+    // Send an error message to the UI
+    sendErrorToast("Couldn't find ticket ID. Contact support.");
+
     return;
   }
 
@@ -35,6 +46,10 @@ const refreshTicketInvoice = async (): Promise<void> => {
     const data = await getTicketInvoice(ticketId);
     if (!data) {
       console.error("Failed to retrieve ticket invoice data.");
+
+      // Send an error message to the UI
+      sendErrorToast("Failed to get ticket invoice. Contact support.");
+
       return;
     }
 
@@ -43,6 +58,9 @@ const refreshTicketInvoice = async (): Promise<void> => {
     }
   } catch (error: any) {
     console.error("Error when getting ticket invoice:", error.message);
+
+    // Send an error message to the UI
+    sendErrorToast("Failed to get ticket invoice. Contact support.");
   }
 };
 
@@ -54,6 +72,9 @@ const getTicketAdditionalProducts = async (): Promise<any> => {
   const ticketId = GlobalStore.getTicketId();
   if (!ticketId) {
     console.error("No ticket ID found. Cannot get additional products.");
+
+    // Send an error message to the UI
+    sendErrorToast("Couldn't find ticket ID. Contact support.");
     return null;
   }
 
@@ -62,6 +83,10 @@ const getTicketAdditionalProducts = async (): Promise<any> => {
     return data;
   } catch (error: any) {
     console.error("Error when getting additional products:", error.message);
+
+    // Send an error message to the UI
+    sendErrorToast("Failed to get additional products. Contact support.");
+
     return null;
   }
 };
@@ -81,6 +106,10 @@ const handleAdditionalProductQuantityChange = async (
     console.error(
       "No ticket ID found. Cannot change additional product quantity."
     );
+
+    // Send an error message to the UI
+    sendErrorToast("Couldn't find ticket ID. Contact support.");
+
     return;
   }
 
@@ -88,6 +117,10 @@ const handleAdditionalProductQuantityChange = async (
     const data = await changeAdditionalProductQuantity(id, quantity, ticketId);
     if (!data) {
       console.error("Failed to change additional product quantity.");
+
+      // Send an error message to the UI
+      sendErrorToast("Failed to change additional product quantity. Contact support.");
+
       return;
     }
 
@@ -98,6 +131,9 @@ const handleAdditionalProductQuantityChange = async (
       "Error when changing additional product quantity:",
       error.message
     );
+
+    // Send an error message to the UI
+    sendErrorToast("Failed to change additional product quantity. Contact support.");
   }
 };
 
@@ -108,6 +144,7 @@ const handleAdditionalProductQuantityChange = async (
 const getProductsInCart = async (): Promise<any> => {
   try {
     console.log("Starting RFID tag scan...");
+    
     const tags = await getRFIDTags(
       RFID_SCAN_CONFIG.SCAN_TIME,
       RFID_SCAN_CONFIG.EXTEND_TIME
@@ -117,6 +154,10 @@ const getProductsInCart = async (): Promise<any> => {
     const ticketId = GlobalStore.getTicketId();
     if (!ticketId) {
       console.error("No ticket ID found. Cannot add products.");
+
+      // Send an error message to the UI
+      sendErrorToast("Couldn't find ticket ID. Contact support.");
+
       return null;
     }
 
@@ -124,6 +165,10 @@ const getProductsInCart = async (): Promise<any> => {
     return data;
   } catch (error: any) {
     console.error("Error during RFID tag scan:", error.message);
+
+    // Send an error message to the UI
+    sendErrorToast("Failed to scan RFID tags. Contact support.");
+
     return null;
   }
 };
@@ -143,7 +188,9 @@ const handleOrderStart = async (
   const additionalProducts = await getTicketAdditionalProducts();
   if (!additionalProducts) {
     console.error("Error when getting additional products.");
+
     // Send an error message to the UI
+    sendErrorToast("Failed to get additional products. Contact support.");
   }
 
   // Change route to home with state
@@ -167,13 +214,16 @@ const handleOrderStart = async (
   const data = await getProductsInCart();
   if (!data) {
     console.error("Error when adding products.");
-    // Consider sending an error message to the UI if needed
+
+    // Send an error message to the UI
+    sendErrorToast("Failed to add products to the cart. Contact support.");
+
     return;
   }
 
   overviewUIWindow.webContents.send("setProducts", data.products);
   overviewUIWindow.webContents.send("setCategories", data.categories);
-  
+
   await refreshTicketInvoice();
 
   console.log("Products added:", data.products);
