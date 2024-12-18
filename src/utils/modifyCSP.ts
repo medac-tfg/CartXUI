@@ -1,45 +1,39 @@
 export const modifyCSP = (defaultSession: Electron.Session) => {
   defaultSession.webRequest.onHeadersReceived((details, callback) => {
     const responseHeaders = details.responseHeaders;
+    if (!responseHeaders) {
+      return callback({ responseHeaders });
+    }
+
     const cspHeaders =
       responseHeaders["Content-Security-Policy"] ||
       responseHeaders["content-security-policy"];
 
     if (cspHeaders) {
-      const existingCSP = cspHeaders[0]; // Get the current CSP header
+      const existingCSP = cspHeaders[0];
+      const imgSrcRegex = /(^|\s)img-src\s+[^;]+/i;
+      let updatedCSP: string;
 
-      // Check if img-src is already in the CSP
-      if (/img-src [^;]+/.test(existingCSP)) {
-        // Replace existing img-src with your custom directive
-        const updatedCSP = existingCSP.replace(
-          /img-src [^;]+/,
+      if (imgSrcRegex.test(existingCSP)) {
+        // Replace existing img-src directive
+        updatedCSP = existingCSP.replace(
+          imgSrcRegex,
           "img-src 'self' https://placehold.co/ data:"
         );
-
-        callback({
-          responseHeaders: {
-            ...responseHeaders,
-            "Content-Security-Policy": [updatedCSP],
-          },
-        });
       } else {
-        // Append img-src to the CSP if it doesn't exist
-        const updatedCSP = `${existingCSP}; img-src 'self' https://placehold.co/ data:`;
-
-        callback({
-          responseHeaders: {
-            ...responseHeaders,
-            "Content-Security-Policy": [updatedCSP],
-          },
-        });
+        // Append img-src directive
+        updatedCSP = `${existingCSP}; img-src 'self' https://placehold.co/ data:`;
       }
-    } else {
-      // If no CSP exists, return default CSP
-      callback({
+
+      return callback({
         responseHeaders: {
           ...responseHeaders,
+          "Content-Security-Policy": [updatedCSP],
         },
       });
     }
+
+    // If no CSP or empty CSP, just proceed without changes
+    return callback({ responseHeaders });
   });
 };

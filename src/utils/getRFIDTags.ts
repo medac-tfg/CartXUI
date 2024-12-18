@@ -43,14 +43,17 @@ process.on("SIGINT", () => {
  * Prepares the RFID sensor for reading by clearing residual data in the buffer.
  * @returns {ReadlineParser} The parser instance for processing RFID data.
  */
-const getRFIDSensorParser = (): ReadlineParser => {
-  // Flush the serial port buffer to clear any residual data
-  port.flush((flushErr) => {
-    if (flushErr) {
-      console.error("Error flushing serial port:", flushErr.message);
-    } else {
-      console.log("Serial port buffer cleared.");
-    }
+const getRFIDSensorParser = async (): Promise<ReadlineParser> => {
+  await new Promise<void>((resolve, reject) => {
+    port.flush((flushErr) => {
+      if (flushErr) {
+        console.error("Error flushing serial port:", flushErr.message);
+        reject(flushErr);
+      } else {
+        console.log("Serial port buffer cleared.");
+        resolve();
+      }
+    });
   });
 
   return parser;
@@ -58,45 +61,50 @@ const getRFIDSensorParser = (): ReadlineParser => {
 
 /**
  * Scans for RFID tags within a defined period, extending the scan time upon each new detection.
- * @returns {Promise<Set<string>>} A set of unique RFID tags.
+ * @returns {Promise<Array<string>>} A promise that resolves to an array of unique RFID tags.
  */
 export const getRFIDTags = (
-  SCAN_TIME = 5000, // Time to initially scan for RFID tags (in milliseconds)
-  EXTEND_TIME = 2000 // Time to extend the scan upon new detections (in milliseconds)
+  SCAN_TIME = 5000, // Time to initially scan for RFID tags (in ms)
+  EXTEND_TIME = 2000 // Time to extend the scan upon new detections (in ms)
 ): Promise<Array<string>> => {
   const detectedTags = new Set<string>();
 
-  return new Promise((resolve, reject) => {
-    const parser = getRFIDSensorParser();
-    if (!parser) {
+  return new Promise(async (resolve, reject) => {
+    let sensorParser: ReadlineParser;
+
+    try {
+      sensorParser = await getRFIDSensorParser();
+    } catch (error) {
       return reject(new Error("Failed to initialize RFID sensor parser."));
     }
 
+    console.log(`Starting RFID scan for ${SCAN_TIME}ms...`);
+
     let scanTimeout: NodeJS.Timeout;
+
+    const finishScanning = () => {
+      sensorParser.off("data", handleData);
+      console.log(`Scan complete. Detected tags: ${Array.from(detectedTags).join(", ")}`);
+      resolve(Array.from(detectedTags));
+    };
 
     const updateTimeout = () => {
       clearTimeout(scanTimeout);
-      scanTimeout = setTimeout(() => {
-        parser.off("data", handleData);
-        resolve(Array.from(detectedTags));
-      }, EXTEND_TIME);
+      scanTimeout = setTimeout(finishScanning, EXTEND_TIME);
     };
 
     const handleData = (data: string) => {
       const cleanedData = data.trim().replace(/[^a-zA-Z0-9]/g, "");
       if (!cleanedData || detectedTags.has(cleanedData)) return;
 
+      console.log(`Detected tag: ${cleanedData}`);
       detectedTags.add(cleanedData);
-      updateTimeout(); // Extend the scan time
+      updateTimeout(); // Extend the scan time upon new detection
     };
 
-    // Start listening for data
-    parser.on("data", handleData);
+    sensorParser.on("data", handleData);
 
-    // Initialize the scan timeout
-    scanTimeout = setTimeout(() => {
-      parser.off("data", handleData);
-      resolve(Array.from(detectedTags));
-    }, SCAN_TIME);
+    // Set the initial scan timeout
+    scanTimeout = setTimeout(finishScanning, SCAN_TIME);
   });
 };
