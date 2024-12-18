@@ -20,8 +20,6 @@ const AppContent = () => {
   useEffect(() => {
     window.electron.onChangeRoute(({ route, state }: RouteChange) => {
       navigate(route, { state });
-
-      toast("Navigating to " + route);
     });
   }, [navigate]);
 
