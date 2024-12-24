@@ -51,8 +51,8 @@ const createWindows = (): {
 app.on("ready", () => {
   const { overviewWindow, startWindow } = createWindows();
 
-  registerStartUIListeners(startWindow, overviewWindow);
-  registerOverviewUIListeners(startWindow, overviewWindow);
+  registerStartUIListeners(startWindow);
+  registerOverviewUIListeners(overviewWindow);
 
   modifyCSP(session.defaultSession);
 });

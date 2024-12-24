@@ -1,7 +1,8 @@
 import { ipcMain } from "electron";
 import { startOrder } from "../api/endpoints/startOrder";
-import GlobalStore from "../utils/globalStore";
 import { handleOrderStart } from "./overviewController";
+
+import Ticket from "../state/Ticket";
 
 let startWindow: Electron.BrowserWindow | null = null;
 
@@ -25,7 +26,6 @@ const getMethodInstructions = (shoppingMethod: string): string => {
 
 const handleShoppingMethodSelection = async (
   startUIWindow: Electron.BrowserWindow,
-  overviewUIWindow: Electron.BrowserWindow,
   shoppingMethod: string
 ) => {
   const cleanedMethod = shoppingMethod.replace("option_", "");
@@ -41,7 +41,7 @@ const handleShoppingMethodSelection = async (
       return;
     }
 
-    GlobalStore.setTicketId(data.ticketId);
+    Ticket.setTicketId(data.ticketId);
 
     const shoppingMethodInstructions = getMethodInstructions(cleanedMethod);
     startUIWindow.webContents.send("changeRoute", {
@@ -49,7 +49,7 @@ const handleShoppingMethodSelection = async (
       state: { shoppingMethodInstructions },
     });
 
-    handleOrderStart(overviewUIWindow);
+    handleOrderStart();
   } catch (error) {
     console.log("Error when starting order", error.message);
 
@@ -59,12 +59,11 @@ const handleShoppingMethodSelection = async (
 };
 
 const registerStartUIListeners = (
-  startUIWindow: Electron.BrowserWindow,
-  overviewUIWindow: Electron.BrowserWindow
+  startUIWindow: Electron.BrowserWindow
 ): void => {
   startWindow = startUIWindow;
   ipcMain.on("shoppingMethodSelected", (_event, args) =>
-    handleShoppingMethodSelection(startUIWindow, overviewUIWindow, args)
+    handleShoppingMethodSelection(startUIWindow, args)
   );
 };
 

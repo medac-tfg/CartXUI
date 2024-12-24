@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { useLocation } from "react-router-dom";
 
 import Header from "../components/Home/Header/Header";
@@ -24,10 +24,7 @@ const Home = () => {
           />
         )}
         <div className="product__wrapper" ref={productListRef}>
-          <Products
-            listView={listView}
-            activeCategory={activeCategory}
-          />
+          <Products listView={listView} activeCategory={activeCategory} />
         </div>
         <ManageListView
           listView={listView}
