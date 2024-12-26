@@ -3,11 +3,11 @@ import { changeAdditionalProductQuantity } from "../api/endpoints/changeAddition
 import { getTicketInvoice } from "../api/endpoints/getTicketInvoice";
 import { getAdditionalProducts } from "../api/endpoints/getAdditionalProducts";
 import { addProducts } from "../api/endpoints/addProducts";
+import Global from "./Global";
 
 class Ticket {
   private static instance: Ticket;
   private ticketId: string | null = null;
-  private overviewWindow: BrowserWindow | null = null;
   private additionalProducts: Array<any> | null = null;
   private products: Array<any> | null = null;
   private categories: Array<any> | null = null;
@@ -37,20 +37,14 @@ class Ticket {
   }
 
   /**
-   * Sets the overview window for the ticket state.
-   * @param {BrowserWindow} overviewWindow - The overview window to set.
-   * @returns {void}
-   */
-  public setOverviewWindow(overviewWindow: BrowserWindow): void {
-    this.overviewWindow = overviewWindow;
-  }
-
-  /**
    * Sends an error toast message to the overview window.
    * @param {string} message - The error message to display.
    */
   private sendErrorToast(message: string): void {
-    this.overviewWindow?.webContents.send("showToastMessage", {
+    const overviewWindow = Global.getWindow("overview");
+    if (!overviewWindow) return;
+
+    overviewWindow?.webContents.send("showToastMessage", {
       type: "error",
       message,
     });
@@ -63,7 +57,10 @@ class Ticket {
    * @returns {void}
    */
   private sendUpdate(event: string, data: any): void {
-    this.overviewWindow?.webContents.send(event, data);
+    const overviewWindow = Global.getWindow("overview");
+    if (!overviewWindow) return;
+
+    overviewWindow?.webContents.send(event, data);
   }
 
   /**

@@ -1,7 +1,8 @@
 import { BrowserWindow, ipcMain } from "electron";
+import Ticket from "../state/Ticket";
+import Global from "../state/Global";
 
 import { getRFIDTags } from "../utils/getRFIDTags";
-import Ticket from "../state/Ticket";
 
 let overviewWindow: Electron.BrowserWindow | null = null;
 
@@ -94,7 +95,7 @@ const handleOrderStart = async (): Promise<void> => {
  */
 const registerOverviewUIListeners = (overviewUIWindow: BrowserWindow): void => {
   overviewWindow = overviewUIWindow;
-  Ticket.setOverviewWindow(overviewUIWindow);
+  Global.setWindow("overview", overviewUIWindow);
 
   // Listen for quantity change events for additional products
   ipcMain.on("additionalProductChange", (_event, args) => {
