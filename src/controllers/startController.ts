@@ -3,16 +3,15 @@ import { startOrder } from "../api/endpoints/startOrder";
 import { handleOrderStart } from "./overviewController";
 
 import Ticket from "../state/Ticket";
+import Windows from "../state/Windows";
 
 let startWindow: Electron.BrowserWindow | null = null;
 
-const sendErrorToast = (message: string): void => {
-  startWindow?.webContents.send("showToastMessage", {
-    type: "error",
-    message,
-  });
-};
-
+/**
+ * Retrieves the instruction route based on the shopping method selected.
+ * @param {string} shoppingMethod - The selected shopping method.
+ * @returns {string} The corresponding instruction route.
+ */
 const getMethodInstructions = (shoppingMethod: string): string => {
   switch (shoppingMethod) {
     case "shopping-cart":
@@ -24,10 +23,15 @@ const getMethodInstructions = (shoppingMethod: string): string => {
   }
 };
 
-const handleShoppingMethodSelection = async (
-  startUIWindow: Electron.BrowserWindow,
-  shoppingMethod: string
-) => {
+/**
+ * Handles the shopping method selection process:
+ * 1. Cleans the shopping method string.
+ * 2. Initiates the order using the selected method.
+ * 3. Updates the UI with relevant instructions.
+ * 4. Calls the order start process.
+ * @param {string} shoppingMethod - The shopping method selected by the user.
+ */
+const handleShoppingMethodSelection = async (shoppingMethod: string) => {
   const cleanedMethod = shoppingMethod.replace("option_", "");
 
   try {
@@ -36,7 +40,10 @@ const handleShoppingMethodSelection = async (
       console.log("Error when starting order");
 
       // Send an error message to the UI
-      sendErrorToast("Failed to start order. Contact support.");
+      Windows.sendErrorToastToWindow(
+        "start",
+        "Failed to start order. Contact support."
+      );
 
       return;
     }
@@ -44,7 +51,7 @@ const handleShoppingMethodSelection = async (
     Ticket.setTicketId(data.ticketId);
 
     const shoppingMethodInstructions = getMethodInstructions(cleanedMethod);
-    startUIWindow.webContents.send("changeRoute", {
+    startWindow.webContents.send("changeRoute", {
       route: "/instructions",
       state: { shoppingMethodInstructions },
     });
@@ -54,16 +61,25 @@ const handleShoppingMethodSelection = async (
     console.log("Error when starting order", error.message);
 
     // Send an error message to the UI
-    sendErrorToast("Failed to start order. Contact support.");
+    Windows.sendErrorToastToWindow(
+      "start",
+      "Failed to start order. Contact support."
+    );
   }
 };
 
+/**
+ * Registers IPC listeners for events triggered from the Start UI.
+ * @param {Electron.BrowserWindow} startUIWindow - The Start UI window.
+ */
 const registerStartUIListeners = (
   startUIWindow: Electron.BrowserWindow
 ): void => {
   startWindow = startUIWindow;
+  Windows.setWindow("start", startUIWindow);
+
   ipcMain.on("shoppingMethodSelected", (_event, args) =>
-    handleShoppingMethodSelection(startUIWindow, args)
+    handleShoppingMethodSelection(args)
   );
 };
 
