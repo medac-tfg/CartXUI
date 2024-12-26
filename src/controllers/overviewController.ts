@@ -1,6 +1,6 @@
 import { BrowserWindow, ipcMain } from "electron";
 import Ticket from "../state/Ticket";
-import Global from "../state/Global";
+import Windows from "../state/Windows";
 
 import { getRFIDTags } from "../utils/getRFIDTags";
 
@@ -14,13 +14,6 @@ let overviewWindow: Electron.BrowserWindow | null = null;
 const RFID_SCAN_CONFIG = {
   SCAN_TIME: 5000, // 5 seconds
   EXTEND_TIME: 2000, // 2 seconds
-};
-
-const sendErrorToast = (message: string): void => {
-  overviewWindow?.webContents.send("showToastMessage", {
-    type: "error",
-    message,
-  });
 };
 
 /**
@@ -40,7 +33,10 @@ const getProductsInCart = async (): Promise<any> => {
 
     return tags;
   } catch (error: any) {
-    sendErrorToast("Failed to scan RFID tags. Contact support.");
+    Windows.sendErrorToastToWindow(
+      "overview",
+      "Failed to scan RFID tags. Contact support."
+    );
 
     return null;
   }
@@ -79,7 +75,10 @@ const handleOrderStart = async (): Promise<void> => {
     console.error("Error when scanning products.");
 
     // Send an error message to the UI
-    sendErrorToast("Failed to scan products in the cart. Contact support.");
+    Windows.sendErrorToastToWindow(
+      "overview",
+      "Failed to scan products in the cart. Contact support."
+    );
 
     return;
   }
@@ -95,7 +94,7 @@ const handleOrderStart = async (): Promise<void> => {
  */
 const registerOverviewUIListeners = (overviewUIWindow: BrowserWindow): void => {
   overviewWindow = overviewUIWindow;
-  Global.setWindow("overview", overviewUIWindow);
+  Windows.setWindow("overview", overviewUIWindow);
 
   // Listen for quantity change events for additional products
   ipcMain.on("additionalProductChange", (_event, args) => {

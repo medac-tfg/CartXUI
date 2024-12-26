@@ -1,9 +1,8 @@
-import { BrowserWindow } from "electron";
 import { changeAdditionalProductQuantity } from "../api/endpoints/changeAdditionalProductQuantity";
 import { getTicketInvoice } from "../api/endpoints/getTicketInvoice";
 import { getAdditionalProducts } from "../api/endpoints/getAdditionalProducts";
 import { addProducts } from "../api/endpoints/addProducts";
-import Global from "./Global";
+import Windows from "./Windows";
 
 class Ticket {
   private static instance: Ticket;
@@ -37,27 +36,13 @@ class Ticket {
   }
 
   /**
-   * Sends an error toast message to the overview window.
-   * @param {string} message - The error message to display.
-   */
-  private sendErrorToast(message: string): void {
-    const overviewWindow = Global.getWindow("overview");
-    if (!overviewWindow) return;
-
-    overviewWindow?.webContents.send("showToastMessage", {
-      type: "error",
-      message,
-    });
-  }
-
-  /**
    * Sends an update to the overview window.
    * @param {string} event - The event to send.
    * @param {any} data - The data to send.
    * @returns {void}
    */
   private sendUpdate(event: string, data: any): void {
-    const overviewWindow = Global.getWindow("overview");
+    const overviewWindow = Windows.getWindow("overview");
     if (!overviewWindow) return;
 
     overviewWindow?.webContents.send(event, data);
@@ -68,12 +53,19 @@ class Ticket {
    * Fetches the latest ticket invoice information and sends it to the front-end.
    */
   async refreshInvoice(): Promise<void> {
-    if (!this.ticketId) return this.sendErrorToast("No ticket ID available.");
+    if (!this.ticketId)
+      return Windows.sendErrorToastToWindow(
+        "overview",
+        "No ticket ID available."
+      );
 
     try {
       const data = await getTicketInvoice(this.ticketId);
       if (!data) {
-        this.sendErrorToast("Failed to refresh invoice. Contact support.");
+        Windows.sendErrorToastToWindow(
+          "overview",
+          "Failed to refresh invoice. Contact support."
+        );
 
         return;
       }
@@ -81,7 +73,10 @@ class Ticket {
       this.sendUpdate("ticketInvoiceChanged", data);
     } catch (error: any) {
       console.error("Error refreshing invoice:", error.message);
-      this.sendErrorToast("Failed to refresh invoice. Contact support.");
+      Windows.sendErrorToastToWindow(
+        "overview",
+        "Failed to refresh invoice. Contact support."
+      );
     }
   }
 
@@ -95,7 +90,11 @@ class Ticket {
     productId: string,
     quantity: number
   ): Promise<void> {
-    if (!this.ticketId) return this.sendErrorToast("No ticket ID available.");
+    if (!this.ticketId)
+      return Windows.sendErrorToastToWindow(
+        "overview",
+        "No ticket ID available."
+      );
 
     try {
       const data = await changeAdditionalProductQuantity(
@@ -104,7 +103,8 @@ class Ticket {
         this.ticketId
       );
       if (!data) {
-        this.sendErrorToast(
+        Windows.sendErrorToastToWindow(
+          "overview",
           "Failed to change additional product quantity. Contact support."
         );
 
@@ -115,7 +115,8 @@ class Ticket {
       await this.refreshInvoice();
     } catch (error: any) {
       console.error("Error changing product quantity:", error.message);
-      this.sendErrorToast(
+      Windows.sendErrorToastToWindow(
+        "overview",
         "Failed to change additional product quantity. Contact support."
       );
     }
@@ -127,7 +128,7 @@ class Ticket {
    */
   async fetchAdditionalProducts(): Promise<Array<any> | null> {
     if (!this.ticketId) {
-      this.sendErrorToast("No ticket ID available.");
+      Windows.sendErrorToastToWindow("overview", "No ticket ID available.");
       return null;
     }
 
@@ -136,7 +137,8 @@ class Ticket {
     try {
       const data = await getAdditionalProducts(this.ticketId);
       if (!data) {
-        this.sendErrorToast(
+        Windows.sendErrorToastToWindow(
+          "overview",
           "Failed to fetch additional products. Contact support."
         );
         return null;
@@ -146,7 +148,8 @@ class Ticket {
       return data;
     } catch (error: any) {
       console.error("Error fetching additional products:", error.message);
-      this.sendErrorToast(
+      Windows.sendErrorToastToWindow(
+        "overview",
         "Failed to fetch additional products. Contact support."
       );
       return null;
@@ -175,7 +178,10 @@ class Ticket {
     try {
       const data = await addProducts(tags, this.ticketId);
       if (!data) {
-        this.sendErrorToast("Failed to add products. Contact support.");
+        Windows.sendErrorToastToWindow(
+          "overview",
+          "Failed to add products. Contact support."
+        );
         return;
       }
 
@@ -184,7 +190,10 @@ class Ticket {
       this.refreshInvoice();
     } catch (error: any) {
       console.error("Error adding products:", error.message);
-      this.sendErrorToast("Failed to add products. Contact support.");
+      Windows.sendErrorToastToWindow(
+        "overview",
+        "Failed to add products. Contact support."
+      );
     }
   }
 }
