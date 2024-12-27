@@ -23,25 +23,31 @@ const AppContent = () => {
     });
   }, [navigate]);
 
-  useEffect(() => {
-    window.electron.onToast(({ type, message }: ToastEventPayload) => {
-      const toastTypeMap: Record<string, ToastOptions["type"]> = {
-        success: "success",
-        info: "info",
-        warning: "warning",
-        error: "error",
-      };
+  const onToast = ({ type, message }: ToastEventPayload) => {
+    const toastTypeMap: Record<string, ToastOptions["type"]> = {
+      success: "success",
+      info: "info",
+      warning: "warning",
+      error: "error",
+    };
 
-      const toastType = toastTypeMap[type] || "default";
-      toast(message, {
-        type: toastType,
-        style: {
-          fontFamily: "Montserrat-SemiBold",
-          fontSize: "14px",
-          width: "fit-content",
-        },
-      });
+    const toastType = toastTypeMap[type] || "default";
+    toast(message, {
+      type: toastType,
+      style: {
+        fontFamily: "Montserrat-SemiBold",
+        fontSize: "14px",
+        width: "fit-content",
+      },
     });
+  };
+
+  window.sendToast = onToast;
+
+  useEffect(() => {
+    window.electron.onToast(({ type, message }: ToastEventPayload) =>
+      onToast({ type, message })
+    );
   }, []);
 
   return (

@@ -1,5 +1,11 @@
 {
   "manage_order": "Gestionar Comanda",
+  "enter_pin": "Introduir PIN",
+  "pin_placeholder": "Introdueix el PIN",
+  "submit": "Enviar",
+  "cancel": "Cancel·lar",
+  "access_granted": "Accés concedit",
+  "invalid_pin": "PIN invàlid",
   "item": "Article",
   "items": "Articles",
   "product_list": "Llista de Productes",

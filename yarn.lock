@@ -5095,7 +5095,7 @@ raw-body@2.5.2:
     iconv-lite "0.4.24"
     unpipe "1.0.0"
 
-"react-dom@^18 || ^19", react-dom@^19.0.0, react-dom@>=18:
+"react-dom@^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react-dom@^18 || ^19", react-dom@^19.0.0, react-dom@>=18:
   version "19.0.0"
   resolved "https://registry.npmjs.org/react-dom/-/react-dom-19.0.0.tgz"
   integrity sha512-4GV5sHFG0e/0AD4X+ySy6UJd3jVl1iNsNHdpad0qhABJ11twS3TTBnseqsKurKcsNqCEFeGL3uLpVChpIO3QfQ==
@@ -5132,6 +5132,10 @@ react-router@7.0.2:
     set-cookie-parser "^2.6.0"
     turbo-stream "2.4.0"
 
+"react-simple-keyboard@github:medac-tfg/react-simple-keyboard":
+  version "3.8.32"
+  resolved "git+ssh://git@github.com/medac-tfg/react-simple-keyboard.git#78d250e9489d8427aa7d038ccd85c6792d075440"
+
 react-toastify@^11.0.0:
   version "11.0.0"
   resolved "https://registry.npmjs.org/react-toastify/-/react-toastify-11.0.0.tgz"
@@ -5139,7 +5143,7 @@ react-toastify@^11.0.0:
   dependencies:
     clsx "^2.1.1"
 
-react@*, "react@^18 || ^19", react@^19.0.0, "react@>= 16.8.0", react@>=18:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0 || ^19.0.0", "react@^18 || ^19", react@^19.0.0, "react@>= 16.8.0", react@>=18:
   version "19.0.0"
   resolved "https://registry.npmjs.org/react/-/react-19.0.0.tgz"
   integrity sha512-V8AVnmPIICiWpGfm6GLzCR/W5FXLchHop40W4nXBmdlEceh16rCN8O8LNWm5bh5XUX91fh7KpA+W0TgMKmgTpQ==

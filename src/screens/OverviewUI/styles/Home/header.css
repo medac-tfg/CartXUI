@@ -69,3 +69,93 @@
 .header__icon__blue {
   background-color: rgba(44, 112, 247, 0.1);
 }
+
+.header__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.header__modal__content {
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  width: 300px;
+  text-align: center;
+}
+
+.header__modal__title {
+  font-family: "Montserrat-SemiBold";
+  font-size: 18px;
+}
+
+.header__modal__content input {
+  width: 100%;
+  padding: 10px 15px;
+  font-family: "Montserrat-Medium";
+  font-size: 16px;
+  color: #333;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  outline: none;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.header__modal__content input:focus {
+  border-color: #2c70f7;
+}
+
+.header__modal__actions {
+  margin-top: 10px;
+}
+
+.header__modal__actions button {
+  margin: 5px;
+  padding: 10px 20px;
+  font-family: "Montserrat-SemiBold";
+  font-size: 14px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.header__modal__actions button:first-child {
+  background-color: #2c70f7;
+  color: white;
+}
+
+.header__modal__actions button:first-child:hover {
+  background-color: #1a5ec4;
+}
+
+.header__modal__actions button:last-child {
+  background-color: #e0e0e0;
+  color: #333;
+}
+
+.header__modal__actions button:last-child:hover {
+  background-color: #cfcfcf;
+}
+
+.keyboard-container {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.simple-keyboard {
+  max-width: 500px;
+}

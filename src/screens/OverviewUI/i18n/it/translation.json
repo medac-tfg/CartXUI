@@ -1,5 +1,11 @@
 {
   "manage_order": "Gestisci Ordine",
+  "enter_pin": "Inserisci PIN",
+  "pin_placeholder": "Inserisci PIN",
+  "submit": "Invia",
+  "cancel": "Annulla",
+  "access_granted": "Accesso Concesso",
+  "invalid_pin": "PIN Non Valido",
   "item": "Articolo",
   "items": "Articoli",
   "product_list": "Lista Prodotti",
