@@ -1,6 +1,12 @@
 import { LanguageProps } from "./@types/language";
 
-const Language = ({ title, code, flag, active, handleLanguage }: LanguageProps) => {
+const Language = ({
+  title,
+  code,
+  flag,
+  active,
+  handleLanguage,
+}: LanguageProps) => {
   return (
     <div
       className="welcome__language"

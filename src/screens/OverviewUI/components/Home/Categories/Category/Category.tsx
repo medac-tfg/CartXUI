@@ -19,10 +19,7 @@ const Category = ({
   const { t } = useTranslation();
 
   return (
-    <div
-      className={containerClassName}
-      onClick={() => setActiveCategory(name)}
-    >
+    <div className={containerClassName} onClick={() => setActiveCategory(name)}>
       <div className={iconClassName}>
         <Icon size={22} color={active ? "#fff" : "#000"} />
       </div>

@@ -10,9 +10,7 @@ const AdditionalItems = ({ itemList }: AdditionalItemsComponentProps) => {
 
     setItems((prevItems) =>
       prevItems.map((item) =>
-        item._id === id
-          ? { ...item, quantity: safeQuantity }
-          : item
+        item._id === id ? { ...item, quantity: safeQuantity } : item
       )
     );
 

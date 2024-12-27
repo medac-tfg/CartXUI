@@ -29,7 +29,6 @@ const Invoice = ({ initialAdditionalProducts }: InvoiceComponentProps) => {
         totalTax: data.totalTax,
       });
     });
-
   }, []);
 
   return (

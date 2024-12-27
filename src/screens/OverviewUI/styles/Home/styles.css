@@ -11,7 +11,7 @@
 
 .product__wrapper {
   overflow-y: auto;
-  scrollbar-width: none; 
+  scrollbar-width: none;
   padding-bottom: 20px;
 }
 
