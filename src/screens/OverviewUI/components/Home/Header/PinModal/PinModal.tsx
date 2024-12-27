@@ -4,7 +4,9 @@ import Keyboard from "react-simple-keyboard";
 import "react-simple-keyboard/build/css/index.css";
 import { useState } from "react";
 
-const PinModal = ({ setIsModalOpen }: { setIsModalOpen: Function }) => {
+import { ModalProps } from "./@types/modal";
+
+const PinModal = ({ setIsModalOpen }: ModalProps) => {
   const [pin, setPin] = useState("");
   const { t } = useTranslation();
 

@@ -10,7 +10,6 @@ const Header = () => {
   const [timeString, setTimeString] = useState("");
   const [amPm, setAmPm] = useState("");
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [pin, setPin] = useState("");
   const { i18n, t } = useTranslation();
 
   const capitalizeWords = (str: string) => {
@@ -83,9 +82,7 @@ const Header = () => {
           </div>
         </div>
       </div>
-      {isModalOpen && (
-        <PinModal setIsModalOpen={setIsModalOpen} pin={pin} setPin={setPin} />
-      )}
+      {isModalOpen && <PinModal setIsModalOpen={setIsModalOpen} />}
     </>
   );
 };
