@@ -65,7 +65,7 @@ const Header = () => {
 
   const handlePinSubmit = () => {
     if (pin === "1234") {
-      window.sendToast({ type: "error", message: t("access_granted") });
+      window.sendToast({ type: "success", message: t("access_granted") });
       setIsModalOpen(false);
     } else {
       window.sendToast({ type: "error", message: t("invalid_pin") });
