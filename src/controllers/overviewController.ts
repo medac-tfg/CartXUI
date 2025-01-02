@@ -3,6 +3,7 @@ import Ticket from "../state/Ticket";
 import Windows from "../state/Windows";
 
 import { getRFIDTags } from "../utils/getRFIDTags";
+import { checkAdminPin } from "../api/endpoints/checkAdminPin";
 
 let overviewWindow: Electron.BrowserWindow | null = null;
 
@@ -88,6 +89,15 @@ const handleOrderStart = async (): Promise<void> => {
   console.log("Categories added:", Ticket.getCategories());
 };
 
+const handleAdminPinEntered = async (pin: string): Promise<void> => {
+  const isCorrectPin = await checkAdminPin(pin);
+  if (isCorrectPin) {
+    //overviewWindow.webContents.send("changeRoute", { route: "/admin" });
+  } else {
+    Windows.sendErrorToastToWindow("overview", "Incorrect admin pin.");
+  }
+};
+
 /**
  * Registers IPC listeners for events triggered from the Overview UI.
  * @param {Electron.BrowserWindow} overviewUIWindow The overview UI window.
@@ -101,6 +111,9 @@ const registerOverviewUIListeners = (overviewUIWindow: BrowserWindow): void => {
     const { id, quantity } = args;
     Ticket.changeAdditionalProductQuantity(id, quantity);
   });
+
+  // Listen for admin pin entered events
+  ipcMain.on("adminPinEntered", (_event, pin) => handleAdminPinEntered(pin));
 };
 
 export { registerOverviewUIListeners, handleOrderStart };

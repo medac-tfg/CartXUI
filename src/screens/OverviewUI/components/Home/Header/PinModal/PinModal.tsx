@@ -16,12 +16,7 @@ const PinModal = ({ setIsModalOpen }: ModalProps) => {
   };
 
   const handlePinSubmit = () => {
-    if (pin === "1234") {
-      window.sendToast({ type: "success", message: t("access_granted") });
-      setIsModalOpen(false);
-    } else {
-      window.sendToast({ type: "error", message: t("invalid_pin") });
-    }
+    window.electron.handleAdminPinEntered(pin);
   };
 
   const handleKeyboardInput = (input: string) => {
