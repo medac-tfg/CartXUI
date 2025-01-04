@@ -17,6 +17,7 @@ const PinModal = ({ setIsModalOpen }: ModalProps) => {
 
   const handlePinSubmit = () => {
     window.electron.handleAdminPinEntered(pin);
+    handleModalClose();
   };
 
   const handleKeyboardInput = (input: string) => {

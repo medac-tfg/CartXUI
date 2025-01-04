@@ -9,6 +9,7 @@ export type ContextBridgeApi = {
   onAdditionalProductChange: (callback: (value: string) => void) => void;
   handleAdditionalProductChange: (id: string, quantity: number) => void;
   handleAdminPinEntered: (pin: string) => void;
+  onOpenAdminModal: (callback: (value: string) => void) => void;
 };
 
 const exposedApi: ContextBridgeApi = {
@@ -32,6 +33,8 @@ const exposedApi: ContextBridgeApi = {
   handleAdminPinEntered: (pin: string) => {
     ipcRenderer.send("adminPinEntered", pin);
   },
+  onOpenAdminModal: (callback: (value: string) => void) =>
+    ipcRenderer.on("openAdminModal", (_event, value) => callback(value)),
 };
 
 contextBridge.exposeInMainWorld("electron", exposedApi);

@@ -92,7 +92,7 @@ const handleOrderStart = async (): Promise<void> => {
 const handleAdminPinEntered = async (pin: string): Promise<void> => {
   const isCorrectPin = await checkAdminPin(pin);
   if (isCorrectPin) {
-    //overviewWindow.webContents.send("changeRoute", { route: "/admin" });
+    overviewWindow.webContents.send("openAdminModal");
   } else {
     Windows.sendErrorToastToWindow("overview", "Incorrect admin pin.");
   }

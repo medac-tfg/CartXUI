@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import Header from "../components/Home/Header/Header";
@@ -6,12 +6,19 @@ import Categories from "../components/Home/Categories/Categories";
 import Invoice from "../components/Home/Invoice/Invoice";
 import Products from "../components/Home/Products/Products";
 import ManageListView from "../components/Home/ManageListView/ManageListView";
+import Admin from "../components/Home/Admin/Admin";
 
 const Home = () => {
   const location = useLocation();
   const [listView, setListView] = useState(false);
   const productListRef = useRef<HTMLDivElement>(null);
   const [activeCategory, setActiveCategory] = useState("All");
+  const [showAdmin, setShowAdmin] = useState(false);
+
+  useEffect(() => {
+    const handleOpenAdminModal = () => setShowAdmin(true);
+    window.electron.onOpenAdminModal(handleOpenAdminModal);
+  }, []);
 
   return (
     <div style={{ display: "flex", flexDirection: "row" }}>
@@ -33,6 +40,8 @@ const Home = () => {
         />
       </div>
       <Invoice initialAdditionalProducts={location.state?.additionalProducts} />
+
+      {showAdmin && <Admin setShowAdmin={setShowAdmin} />}
     </div>
   );
 };
