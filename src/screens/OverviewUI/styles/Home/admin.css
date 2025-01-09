@@ -101,6 +101,17 @@
   display: flex;
   flex-direction: column;
   gap: 10px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.admin__product-modal__content::-webkit-scrollbar {
+  width: 5px;
+}
+
+.admin__product-modal__content::-webkit-scrollbar-thumb {
+  background-color: #C6CACD;
+  border-radius: 1000px;
 }
 
 .admin__product-modal__product__container {
@@ -145,4 +156,20 @@
 
 .admin__product-modal__product__remove {
   cursor: pointer;
+  margin-top: 5px;
+}
+
+.swal2-title,
+.swal2-confirm,
+.swal2-cancel {
+  font-family: "Montserrat-SemiBold" !important;
+}
+
+.swal2-input,
+.swal2-validation-message {
+  font-family: "Montserrat-Medium" !important;
+}
+
+.swal2-title {
+  font-size: 24px !important;
 }

@@ -56,6 +56,7 @@
     "react-router-dom": "^7.0.2",
     "react-simple-keyboard": "github:medac-tfg/react-simple-keyboard",
     "react-toastify": "^11.0.0",
-    "serialport": "^12.0.0"
+    "serialport": "^12.0.0",
+    "sweetalert2": "^11.15.10"
   }
 }

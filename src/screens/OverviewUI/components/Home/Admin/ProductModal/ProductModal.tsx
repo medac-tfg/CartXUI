@@ -1,4 +1,5 @@
-import { IoClose, IoRemove } from "react-icons/io5";
+import Swal from "sweetalert2";
+import { IoClose } from "react-icons/io5";
 import { formatCurrency } from "../../../../utils/formatCurrency";
 
 import { ProductModalProps } from "./@types/modal";
@@ -7,10 +8,28 @@ import { Products } from "../../Products/@types/products";
 const ProductModal = ({ products, setShowProductList }: ProductModalProps) => {
   const handleClose = () => setShowProductList(false);
 
+  const showProductInput = async () => {
+    const { value: barcode } = await Swal.fire({
+      title: "Enter the barcode of the product",
+      input: "text",
+      inputPlaceholder: "Barcode",
+      showCancelButton: true,
+      inputValidator: (value) => {
+        if (!value) {
+          return "You need to write something!";
+        }
+      },
+    });
+
+    if (!barcode) return;
+
+    console.log("Barcode", barcode);
+  };
+
   const buttons = [
     {
       text: "Add Product",
-      action: () => console.log("Add Product"),
+      action: showProductInput,
     },
     {
       // Aquí añadimos un timeout de 10 segundos con un temporizador y enviamos el call a la función de rescan
@@ -32,7 +51,7 @@ const ProductModal = ({ products, setShowProductList }: ProductModalProps) => {
   products = [
     {
       name: "Product 1",
-      quantity: 2,
+      quantity: 10,
       priceWithTax: 100,
       image: "https://placehold.co/150",
     },
@@ -52,7 +71,7 @@ const ProductModal = ({ products, setShowProductList }: ProductModalProps) => {
             className="admin__product-modal__header__close"
             onClick={handleClose}
           >
-            <IoClose />
+            <IoClose size={24} />
           </div>
         </div>
         <div className="button-group">
