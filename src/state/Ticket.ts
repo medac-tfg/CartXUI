@@ -7,6 +7,7 @@ import Windows from "./Windows";
 class Ticket {
   private static instance: Ticket;
   private ticketId: string | null = null;
+  private shoppingMethod: string | null = null;
   private additionalProducts: Array<any> | null = null;
   private products: Array<any> | null = null;
   private categories: Array<any> | null = null;
@@ -33,6 +34,23 @@ class Ticket {
    */
   public setTicketId(ticketId: string): void {
     this.ticketId = ticketId;
+  }
+
+  /**
+   * Gets the shopping method for the ticket state.
+   * @returns {string | null} The shopping method.
+   */
+  public getShoppingMethod(): string | null {
+    return this.shoppingMethod;
+  }
+
+  /**
+   * Sets the shopping method for the ticket state.
+   * @param {string} shoppingMethod - The shopping method to set.
+   * @returns {void}
+   */
+  public setShoppingMethod(shoppingMethod: string): void {
+    this.shoppingMethod = shoppingMethod;
   }
 
   /**

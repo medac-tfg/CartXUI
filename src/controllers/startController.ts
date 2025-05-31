@@ -49,7 +49,8 @@ const handleShoppingMethodSelection = async (shoppingMethod: string) => {
     }
 
     Ticket.setTicketId(data.ticketId);
-
+    Ticket.setShoppingMethod(cleanedMethod);
+    
     const shoppingMethodInstructions = getMethodInstructions(cleanedMethod);
     startWindow.webContents.send("changeRoute", {
       route: "/instructions",

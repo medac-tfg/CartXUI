@@ -17,5 +17,5 @@ export const mainConfig: Configuration = {
   resolve: {
     extensions: [".js", ".ts", ".jsx", ".tsx", ".css", ".json"],
   },
-  externals: ["serialport"],
+  externals: ["serialport", "@tensorflow/tfjs-node", "node-webcam"],
 };

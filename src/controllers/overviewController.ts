@@ -4,6 +4,8 @@ import Windows from "../state/Windows";
 
 import { getRFIDTags } from "../utils/getRFIDTags";
 import { checkAdminPin } from "../api/endpoints/checkAdminPin";
+import { getHumanPresence } from "../utils/getHumanPresence";
+import { asyncWait } from "../utils/asyncWait";
 
 let overviewWindow: Electron.BrowserWindow | null = null;
 
@@ -59,16 +61,26 @@ const handleOrderStart = async (): Promise<void> => {
     state: { additionalProducts },
   });
 
-  /*
-    Distinguish between shopping methods:
-    1. Shopping cart: Wait until no human presence on sensor & we have weight on scale, 
-       wait 2 secs and start scanning. 
-       Loop check if human presence returns, stop scanning if so.
-    2. Shopping basket: Same as cart.
-    3. By hand: Start scanning immediately once human presence is detected.
+  // First, we wait till a human is inside the detection area
+  while (!(await getHumanPresence())) {
+    console.log("Waiting for human presence...");
+    await asyncWait(1000); // Wait 1 seconds before checking again
+  }
 
-    NOTE: The logic for detection is not implemented here.
-  */
+  console.log("Human presence detected, starting order...");
+
+  const shoppingMethod = Ticket.getShoppingMethod();
+  if (
+    shoppingMethod === "shopping-cart" ||
+    shoppingMethod === "shopping-basket"
+  ) {
+    // After human presence is detected, if the shopping method is cart or basket,
+    // we wait for 2 seconds to ensure the person exits the detection area
+    while (await getHumanPresence()) {
+      console.log("Human still present...");
+      await asyncWait(2000);
+    }
+  }
 
   // Get products based on RFID scan
   const tags = await getProductsInCart();
@@ -83,10 +95,8 @@ const handleOrderStart = async (): Promise<void> => {
 
     return;
   }
+  
   Ticket.addProducts(tags);
-
-  console.log("Products added:", Ticket.getProducts());
-  console.log("Categories added:", Ticket.getCategories());
 };
 
 const handleAdminPinEntered = async (pin: string): Promise<void> => {
