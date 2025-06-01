@@ -5,7 +5,11 @@
   "option_shopping-basket": "Einkaufskorb",
   "option_by-hand": "Zu Fuß",
   "select_language": "Sprache Auswählen",
-  "enter_products_hand": "Betreten Sie CartX mit den Produkten in der Hand und warten Sie, bis das System sie erkennt",
   "enter_cart": "Stellen Sie den Einkaufswagen in CartX (gehen Sie nicht hinein) und warten Sie, bis das System die Produkte erkennt",
-  "enter_basket": "Stellen Sie den Korb in CartX (gehen Sie nicht hinein) und warten Sie, bis das System die Produkte erkennt"
+  "enter_basket": "Stellen Sie den Korb in CartX (gehen Sie nicht hinein) und warten Sie, bis das System die Produkte erkennt",
+  "enter_products_hand": "Betreten Sie CartX mit den Produkten in der Hand und warten Sie, bis das System sie erkennt",
+  "scanning_products": "Produkte werden gescannt...",
+  "go_secondary_screen_cart": "Schieben Sie den Einkaufswagen aus CartX und gehen Sie zum sekundären Bildschirm",
+  "go_secondary_screen_basket": "Schieben Sie den Einkaufskorb aus CartX und gehen Sie zum sekundären Bildschirm",
+  "go_secondary_screen_hand": "Gehen Sie zum sekundären Bildschirm, um mit dem Prozess fortzufahren"
 }

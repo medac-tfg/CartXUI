@@ -5,7 +5,11 @@
   "option_shopping-basket": "Panier de Courses",
   "option_by-hand": "À la Main",
   "select_language": "Sélectionner la Langue",
-  "enter_products_hand": "Entrez dans CartX avec les produits à la main et attendez que le système les détecte",
   "enter_cart": "Placez le chariot dans CartX (n’entrez pas vous-même) et attendez que le système détecte les produits",
-  "enter_basket": "Placez le panier dans CartX (n’entrez pas vous-même) et attendez que le système détecte les produits"
+  "enter_basket": "Placez le panier dans CartX (n’entrez pas vous-même) et attendez que le système détecte les produits",
+  "enter_products_hand": "Entrez dans CartX avec les produits à la main et attendez que le système les détecte",
+  "scanning_products": "Scan des produits en cours...",
+  "go_secondary_screen_cart": "Poussez le chariot hors de CartX et dirigez-vous vers l’écran secondaire",
+  "go_secondary_screen_basket": "Poussez le panier hors de CartX et dirigez-vous vers l’écran secondaire",
+  "go_secondary_screen_hand": "Dirigez-vous vers l’écran secondaire pour continuer le processus"
 }

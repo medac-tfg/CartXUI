@@ -5,7 +5,11 @@
   "option_shopping-basket": "Cestino della Spesa",
   "option_by-hand": "A Mano",
   "select_language": "Seleziona Lingua",
-  "enter_products_hand": "Entra in CartX con i prodotti in mano e aspetta che il sistema li rilevi",
   "enter_cart": "Posiziona il carrello in CartX (non entrare tu) e aspetta che il sistema rilevi i prodotti",
-  "enter_basket": "Posiziona il cestino in CartX (non entrare tu) e aspetta che il sistema rilevi i prodotti"
+  "enter_basket": "Posiziona il cestino in CartX (non entrare tu) e aspetta che il sistema rilevi i prodotti",
+  "enter_products_hand": "Entra in CartX con i prodotti in mano e aspetta che il sistema li rilevi",
+  "scanning_products": "Scansione dei prodotti in corso...",
+  "go_secondary_screen_cart": "Spingi il carrello fuori da CartX e dirigiti verso lo schermo secondario",
+  "go_secondary_screen_basket": "Spingi il cestino fuori da CartX e dirigiti verso lo schermo secondario",
+  "go_secondary_screen_hand": "Dirigiti verso lo schermo secondario per continuare con il processo"
 }

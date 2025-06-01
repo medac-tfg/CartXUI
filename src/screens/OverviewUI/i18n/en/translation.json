@@ -1,4 +1,6 @@
 {
+  "welcome": "Welcome to CartX",
+  "touch_first_screen": "Touch the other screen to begin",
   "manage_order": "Manage Order",
   "enter_pin": "Enter PIN",
   "pin_placeholder": "Enter PIN",
@@ -19,5 +21,14 @@
   "payment_discount": "Discount",
   "payment_total-tax": "Total Tax",
   "payment_total": "Total",
-  "payment_finish-order": "Finish Order"
+  "payment_finish-order": "Finish Order",
+  "payment_processing_card": "Hold card to reader...",
+  "payment_success_card": "Card payment successful!",
+  "payment_processing_cash": "Waiting for cash payment...",
+  "payment_success_cash": "Cash payment received!",
+  "payment_processing_qr": "Scan QR code to pay...",
+  "payment_success_qr": "QR payment completed!",
+  "payment_processing_default": "Processing payment...",
+  "payment_success_default": "Payment successful!",
+  "payment_order_completed": "Order completed"
 }

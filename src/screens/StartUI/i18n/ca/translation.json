@@ -5,7 +5,11 @@
   "option_shopping-basket": "Cistella",
   "option_by-hand": "A mà",
   "select_language": "Seleccionar idioma",
-  "enter_products_hand": "Entra a CartX amb els productes a la mà i espera que el sistema els detecti",
   "enter_cart": "Col·loca el carretó a CartX (no hi entris tu) i espera que el sistema detecti els productes",
-  "enter_basket": "Col·loca la cistella a CartX (no hi entris tu) i espera que el sistema detecti els productes"
+  "enter_basket": "Col·loca la cistella a CartX (no hi entris tu) i espera que el sistema detecti els productes",
+  "enter_products_hand": "Entra a CartX amb els productes a la mà i espera que el sistema els detecti",
+  "scanning_products": "Escanejant productes...",
+  "go_secondary_screen_cart": "Empenya el carretó fora de CartX i dirigeix-te a la pantalla secundària",
+  "go_secondary_screen_basket": "Empenya la cistella fora de CartX i dirigeix-te a la pantalla secundària",
+  "go_secondary_screen_hand": "Dirigeix-te a la pantalla secundària per continuar amb el procés"
 }

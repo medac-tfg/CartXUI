@@ -23,7 +23,7 @@ const RFID_SCAN_CONFIG = {
  * Scans for RFID tags and adds the corresponding products to the cart.
  * @returns {Promise<any>} The data containing products and categories related to the scanned RFID tags.
  */
-const getProductsInCart = async (): Promise<any> => {
+const getProductsInCart = async (): Promise<string[] | null> => {
   try {
     console.log("Starting RFID tag scan...");
 
@@ -42,6 +42,22 @@ const getProductsInCart = async (): Promise<any> => {
     );
 
     return null;
+  }
+};
+
+/**
+ * Retrieves the instruction route based on the shopping method selected.
+ * @param {string} shoppingMethod - The selected shopping method.
+ * @returns {string} The corresponding instruction route.
+ */
+const getMethodInstructions = (shoppingMethod: string): string => {
+  switch (shoppingMethod) {
+    case "shopping-cart":
+      return "go_secondary_screen_cart";
+    case "shopping-basket":
+      return "go_secondary_screen_basket";
+    default:
+      return "go_secondary_screen_hand";
   }
 };
 
@@ -82,6 +98,12 @@ const handleOrderStart = async (): Promise<void> => {
     }
   }
 
+  const startWindow = Windows.getWindow("start");
+  startWindow.webContents.send("changeRoute", {
+    route: "/instructions",
+    state: { instructions: "scanning_products" },
+  });
+
   // Get products based on RFID scan
   const tags = await getProductsInCart();
   if (!tags) {
@@ -95,8 +117,14 @@ const handleOrderStart = async (): Promise<void> => {
 
     return;
   }
-  
+
   Ticket.addProducts(tags);
+
+  const shoppingMethodInstructions = getMethodInstructions(shoppingMethod);
+  startWindow.webContents.send("changeRoute", {
+    route: "/instructions",
+    state: { instructions: shoppingMethodInstructions },
+  });
 };
 
 const handleAdminPinEntered = async (pin: string): Promise<void> => {
@@ -120,6 +148,18 @@ const registerOverviewUIListeners = (overviewUIWindow: BrowserWindow): void => {
   ipcMain.on("additionalProductChange", (_event, args) => {
     const { id, quantity } = args;
     Ticket.changeAdditionalProductQuantity(id, quantity);
+  });
+
+  // Listen for order finished events
+  ipcMain.on("orderFinished", () => {
+    Ticket.clear();
+
+    overviewWindow.webContents.send("changeRoute", { route: "/" });
+
+    const startWindow = Windows.getWindow("start");
+    if (startWindow) {
+      startWindow.webContents.send("changeRoute", { route: "/" });
+    }
   });
 
   // Listen for admin pin entered events

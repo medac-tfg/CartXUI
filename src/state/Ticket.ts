@@ -214,6 +214,17 @@ class Ticket {
       );
     }
   }
+
+  /**
+   * Clears the ticket state, resetting all properties to their initial values.
+   */
+  clear(): void {
+    this.ticketId = null;
+    this.shoppingMethod = null;
+    this.additionalProducts = null;
+    this.products = null;
+    this.categories = null;
+  }
 }
 
 export default Ticket.getInstance();

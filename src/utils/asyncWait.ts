@@ -4,4 +4,4 @@ export const asyncWait = (ms: number): Promise<void> => {
       resolve();
     }, ms);
   });
-}
+};

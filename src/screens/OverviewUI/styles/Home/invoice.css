@@ -205,3 +205,111 @@
   font-size: 15px;
   color: #fff;
 }
+
+.invoice__receipt__info__pay-button--processing {
+  background-color: #ffa500;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: not-allowed;
+  opacity: 0.9;
+}
+
+.invoice__receipt__info__pay-button--processing:hover {
+  background-color: #ffa500;
+}
+
+.invoice__receipt__info__pay-button__spinner {
+  animation: spin 1s linear infinite;
+}
+
+.invoice__receipt__info__pay-button__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+}
+
+.invoice__receipt__info__pay-button__countdown {
+  font-size: 12px;
+  opacity: 0.8;
+}
+
+.invoice__receipt__info__pay-button--success {
+  background-color: #28a745;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: not-allowed;
+  animation: successPulse 0.6s ease-in-out;
+}
+
+.invoice__receipt__info__pay-button--success:hover {
+  background-color: #28a745;
+}
+
+.invoice__receipt__info__pay-button__check {
+  animation: checkAppear 0.5s ease-in-out;
+}
+
+.invoice__receipt__info__pay-button--completed {
+  background-color: #6c757d;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 10px;
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.invoice__receipt__info__pay-button--completed:hover {
+  background-color: #6c757d;
+}
+
+.invoice__receipt__payment-method--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes checkAppear {
+  0% {
+    opacity: 0;
+    transform: scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.invoice__receipt__info__pay-button {
+  transition: all 0.3s ease;
+}
+
+.invoice__receipt__payment-method {
+  transition: opacity 0.3s ease;
+}

@@ -1,4 +1,6 @@
 {
+  "welcome": "Benvingut a CartX",
+  "touch_first_screen": "Toca l'altra pantalla per començar",
   "manage_order": "Gestionar Comanda",
   "enter_pin": "Introduir PIN",
   "pin_placeholder": "Introdueix el PIN",
@@ -19,5 +21,14 @@
   "payment_discount": "Descompte",
   "payment_total-tax": "Impost Total",
   "payment_total": "Total",
-  "payment_finish-order": "Finalitzar Comanda"
+  "payment_finish-order": "Finalitzar Comanda",
+  "payment_processing_card": "Apropa la targeta al lector...",
+  "payment_success_card": "Pagament amb targeta exitós!",
+  "payment_processing_cash": "Esperant el pagament en efectiu...",
+  "payment_success_cash": "Pagament en efectiu rebut!",
+  "payment_processing_qr": "Escaneja el codi QR per pagar...",
+  "payment_success_qr": "Pagament per QR completat!",
+  "payment_processing_default": "Processant pagament...",
+  "payment_success_default": "Pagament exitós!",
+  "payment_order_completed": "Comanda completada"
 }

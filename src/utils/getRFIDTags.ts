@@ -84,7 +84,9 @@ export const getRFIDTags = (
 
     const finishScanning = () => {
       sensorParser.off("data", handleData);
-      console.log(`Scan complete. Detected tags: ${Array.from(detectedTags).join(", ")}`);
+      console.log(
+        `Scan complete. Detected tags: ${Array.from(detectedTags).join(", ")}`
+      );
       resolve(Array.from(detectedTags));
     };
 

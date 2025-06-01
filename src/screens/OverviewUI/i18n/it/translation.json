@@ -1,4 +1,6 @@
 {
+  "welcome": "Benvenuto su CartX",
+  "touch_first_screen": "Tocca l'altro schermo per iniziare",
   "manage_order": "Gestisci Ordine",
   "enter_pin": "Inserisci PIN",
   "pin_placeholder": "Inserisci PIN",
@@ -19,5 +21,14 @@
   "payment_discount": "Sconto",
   "payment_total-tax": "Tassa Totale",
   "payment_total": "Totale",
-  "payment_finish-order": "Concludi Ordine"
+  "payment_finish-order": "Concludi Ordine",
+  "payment_processing_card": "Avvicina la carta al lettore...",
+  "payment_success_card": "Pagamento con carta riuscito!",
+  "payment_processing_cash": "In attesa del pagamento in contanti...",
+  "payment_success_cash": "Pagamento in contanti ricevuto!",
+  "payment_processing_qr": "Scansiona il codice QR per pagare...",
+  "payment_success_qr": "Pagamento QR completato!",
+  "payment_processing_default": "Elaborazione del pagamento...",
+  "payment_success_default": "Pagamento riuscito!",
+  "payment_order_completed": "Ordine completato"
 }

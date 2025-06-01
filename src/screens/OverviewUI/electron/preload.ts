@@ -8,6 +8,7 @@ export type ContextBridgeApi = {
   onTicketInvoiceChange: (callback: (value: string) => void) => void;
   onAdditionalProductChange: (callback: (value: string) => void) => void;
   handleAdditionalProductChange: (id: string, quantity: number) => void;
+  handleOrderFinished: () => void;
   handleAdminPinEntered: (pin: string) => void;
   onOpenAdminModal: (callback: (value: string) => void) => void;
 };
@@ -29,6 +30,9 @@ const exposedApi: ContextBridgeApi = {
     ),
   handleAdditionalProductChange: (id: string, quantity: number) => {
     ipcRenderer.send("additionalProductChange", { id, quantity });
+  },
+  handleOrderFinished: () => {
+    ipcRenderer.send("orderFinished");
   },
   handleAdminPinEntered: (pin: string) => {
     ipcRenderer.send("adminPinEntered", pin);

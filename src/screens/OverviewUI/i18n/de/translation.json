@@ -1,4 +1,6 @@
 {
+  "welcome": "Willkommen bei CartX",
+  "touch_first_screen": "Berühre den anderen Bildschirm, um zu beginnen",
   "manage_order": "Bestellung Verwalten",
   "enter_pin": "PIN eingeben",
   "pin_placeholder": "PIN eingeben",
@@ -19,5 +21,14 @@
   "payment_discount": "Rabatt",
   "payment_total-tax": "Gesamtsteuer",
   "payment_total": "Gesamt",
-  "payment_finish-order": "Bestellung Abschließen"
+  "payment_finish-order": "Bestellung Abschließen",
+  "payment_processing_card": "Karte zum Lesegerät halten...",
+  "payment_success_card": "Kartenzahlung erfolgreich!",
+  "payment_processing_cash": "Warte auf Barzahlung...",
+  "payment_success_cash": "Barzahlung erhalten!",
+  "payment_processing_qr": "QR-Code scannen zum Bezahlen...",
+  "payment_success_qr": "QR-Zahlung abgeschlossen!",
+  "payment_processing_default": "Zahlung wird verarbeitet...",
+  "payment_success_default": "Zahlung erfolgreich!",
+  "payment_order_completed": "Bestellung abgeschlossen"
 }

@@ -3,7 +3,9 @@ import { AxiosError } from "axios";
 
 export const getAdditionalProducts = async (ticketId: string) => {
   try {
-    const { data } = await api.get(`/api/cart/${ticketId}/getAdditionalProducts`);
+    const { data } = await api.get(
+      `/api/cart/${ticketId}/getAdditionalProducts`
+    );
 
     return data;
   } catch (error) {
