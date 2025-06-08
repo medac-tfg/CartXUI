@@ -1,51 +1,88 @@
 import { SerialPort, ReadlineParser } from "serialport";
 
-const port = new SerialPort({
-  path: process.env.RFID_SERIAL_PORT || "/dev/tty001",
-  baudRate: 115200,
-  parity: "none",
-  stopBits: 1,
-  dataBits: 8,
-  autoOpen: false,
-});
+let port: SerialPort | null = null;
+let parser: ReadlineParser | null = null;
 
-// Create a parser to read incoming data line by line
-const parser = new ReadlineParser({ delimiter: "\n" });
-port.pipe(parser);
-
-// Open the serial port
-port.open((err) => {
-  if (err) {
-    return console.error("Error opening serial port:", err.message);
-  }
-  console.log("Serial port opened successfully");
-});
-
-// Handle errors
-port.on("error", (err) => {
-  console.error("Serial port error:", err.message);
-});
-
-// Close the serial port gracefully on process exit
-process.on("SIGINT", () => {
-  console.log("Closing serial port...");
-  port.close((err) => {
-    if (err) {
-      console.error("Error closing serial port:", err.message);
-    } else {
-      console.log("Serial port closed.");
+/**
+ * Opens the serial port if not already open
+ */
+const openSerialPort = (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    if (port && port.isOpen) {
+      resolve();
+      return;
     }
-    process.exit();
+
+    port = new SerialPort({
+      path: process.env.RFID_SERIAL_PORT || "/dev/tty001",
+      baudRate: 115200,
+      parity: "none",
+      stopBits: 1,
+      dataBits: 8,
+      autoOpen: false,
+    });
+
+    // Create a parser to read incoming data line by line
+    parser = new ReadlineParser({ delimiter: "\n" });
+    port.pipe(parser);
+
+    // Handle errors
+    port.on("error", (err) => {
+      console.error("Serial port error:", err.message);
+      reject(err);
+    });
+
+    // Open the serial port
+    port.open((err) => {
+      if (err) {
+        console.error("Error opening serial port:", err.message);
+        reject(err);
+      } else {
+        console.log("Serial port opened successfully");
+        resolve();
+      }
+    });
   });
-});
+};
+
+/**
+ * Closes the serial port if open
+ */
+const closeSerialPort = (): Promise<void> => {
+  return new Promise((resolve, reject) => {
+    if (!port || !port.isOpen) {
+      resolve();
+      return;
+    }
+
+    console.log("Closing serial port...");
+    port.close((err) => {
+      if (err) {
+        console.error("Error closing serial port:", err.message);
+        reject(err);
+      } else {
+        console.log("Serial port closed.");
+        port = null;
+        parser = null;
+        resolve();
+      }
+    });
+  });
+};
 
 /**
  * Prepares the RFID sensor for reading by clearing residual data in the buffer.
  * @returns {ReadlineParser} The parser instance for processing RFID data.
  */
 const getRFIDSensorParser = async (): Promise<ReadlineParser> => {
+  await openSerialPort();
+
+  if (!port || !parser) {
+    throw new Error("Failed to initialize serial port");
+  }
+
   await new Promise<void>((resolve, reject) => {
-    port.flush((flushErr) => {
+    port!.flush((flushErr) => {
       if (flushErr) {
         console.error("Error flushing serial port:", flushErr.message);
         reject(flushErr);
@@ -75,6 +112,7 @@ export const getRFIDTags = (
     try {
       sensorParser = await getRFIDSensorParser();
     } catch (error) {
+      await closeSerialPort();
       return reject(new Error("Failed to initialize RFID sensor parser."));
     }
 
@@ -82,11 +120,19 @@ export const getRFIDTags = (
 
     let scanTimeout: NodeJS.Timeout;
 
-    const finishScanning = () => {
+    const finishScanning = async () => {
       sensorParser.off("data", handleData);
       console.log(
         `Scan complete. Detected tags: ${Array.from(detectedTags).join(", ")}`
       );
+
+      // Close the serial port after scanning
+      try {
+        await closeSerialPort();
+      } catch (error) {
+        console.error("Error closing serial port after scan:", error);
+      }
+
       resolve(Array.from(detectedTags));
     };
 
@@ -110,3 +156,22 @@ export const getRFIDTags = (
     scanTimeout = setTimeout(finishScanning, SCAN_TIME);
   });
 };
+
+// Close the serial port gracefully on process exit
+process.on("SIGINT", async () => {
+  try {
+    await closeSerialPort();
+  } catch (error) {
+    console.error("Error during graceful shutdown:", error);
+  }
+  process.exit();
+});
+
+process.on("SIGTERM", async () => {
+  try {
+    await closeSerialPort();
+  } catch (error) {
+    console.error("Error during graceful shutdown:", error);
+  }
+  process.exit();
+});
