@@ -18,11 +18,11 @@ export const modifyCSP = (defaultSession: Electron.Session) => {
         // Replace existing img-src directive
         updatedCSP = existingCSP.replace(
           imgSrcRegex,
-          "img-src 'self' https://placehold.co/ data:"
+          "img-src 'self' https://i.imgur.com/ data:"
         );
       } else {
         // Append img-src directive
-        updatedCSP = `${existingCSP}; img-src 'self' https://placehold.co/ data:`;
+        updatedCSP = `${existingCSP}; img-src 'self' https://i.imgur.com/ data:`;
       }
 
       return callback({
